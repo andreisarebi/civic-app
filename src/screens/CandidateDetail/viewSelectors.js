@@ -6,6 +6,6 @@ export const getCandidateSummary = (state, candidateId) => {
     name: candidate.name,
     imageURI: candidate.image,
     isFavorite: true,
-    partyPreference: 'Democrat',
+    partyPreference: candidate.partyPreference,
   };
 };
