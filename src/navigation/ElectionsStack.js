@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation';
-import ElectionsScreen from '../screens/ElectionsScreen';
+import ElectionsScreen from '../screens/Elections';
 import CandidateDetailScreen from '../screens/CandidateDetail';
 
 import styles from './styles';
