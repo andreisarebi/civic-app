@@ -1,4 +1,4 @@
-import { getCandidate } from './redux/candidates';
+import { getCandidate } from '../../candidate/redux/candidates';
 
 export const getCandidateSummary = (state, candidateId) => {
   // const candidate =

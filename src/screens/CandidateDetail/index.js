@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, Text, StyleSheet } from 'react-native';
-import CandidateDetail from '../candidate/CandidateDetailContainer';
+import CandidateDetail from './CandidateDetailContainer';
 
 class ElectionsScreen extends React.Component {
   static navigationOptions = {

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { toggleFavorite } from './redux/candidates';
+import { toggleFavorite } from '../../candidate/redux/candidates';
 import { getCandidateSummary } from './viewSelectors';
 import CandidateDetail from './CandidateDetail';
 
