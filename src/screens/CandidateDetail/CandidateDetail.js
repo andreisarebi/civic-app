@@ -22,21 +22,32 @@ CandidateDetail.propTypes = {
   toggleFavorite: PropTypes.func,
   positions: PropTypes.array,
   candidateId: PropTypes.string,
+  partyPreference: PropTypes.string,
+  matchPercent: PropTypes.number
 };
 
-const CandidatePreview = props => (
-  <View style={styles.previewContainer}>
-    <View style={styles.container}>
-      <Avatar xlarge rounded source={{ uri: props.imageURI }} />
-      <Text>{props.name}</Text>
-      <Text>{props.partyPreference}</Text>
+const CandidatePreview = props => {
+  const matchPercent = 98;
+  const partyPreference = "Democrat";
+  const positions = ["President of the United States"];
+  return(
+    <View style={styles.previewContainer}>
+      <View style={styles.container}>
+        <Avatar xlarge rounded source={{ uri: props.imageURI }} />
+        <Text style={styles.nameText}>{props.name}</Text>
+        <Text style={styles.positionsText}>Running for {positions[0]}</Text>
+        <Text>
+          <Text style={styles.matchText}>{matchPercent}% </Text>
+          match | {partyPreference}
+        </Text>
+      </View>
+      <Favorite
+        isFavorite={props.isFavorite}
+        onToggleFavorite={props.onToggleFavorite}
+      />
     </View>
-    <Favorite
-      isFavorite={props.isFavorite}
-      onToggleFavorite={props.onToggleFavorite}
-    />
-  </View>
-);
+  )
+};
 
 CandidatePreview.propTypes = {
   name: PropTypes.string,
@@ -69,7 +80,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
-    marginBottom: 10,
     padding: 20,
   },
   container: {
@@ -78,7 +88,25 @@ const styles = StyleSheet.create({
   },
   favorite: {
     color: Colors.orange,
+    position: 'absolute',
+    right: 0,
+    top: 0,
   },
+  nameText: {
+    fontSize: 21,
+    paddingTop: 5,
+    fontWeight: 'bold'
+  },
+  positionsText: {
+    color: Colors.lightGray,
+    paddingTop: 5,
+    paddingBottom: 5
+  },
+  matchText: {
+    color: Colors.lightBlue,
+    fontSize: 18,
+    fontWeight: 'bold'
+  }
 });
 
 export default CandidateDetail;
