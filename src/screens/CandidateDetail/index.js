@@ -1,21 +1,19 @@
 import React from 'react';
-import { ScrollView, Text, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import CandidateDetail from './CandidateDetailContainer';
 import PropTypes from 'prop-types';
-import About from './About';
+import TabBar from './TabBar';
 
-class ElectionsScreen extends React.Component {
+class CandidatesScreen extends React.Component {
   static navigationOptions = {
     title: 'Candidates',
   };
-
   static propTypes = propTypes;
-
   render() {
     return (
       <ScrollView style={styles.container}>
         <CandidateDetail candidateId={this.props.navigation.state.params.id}/>
-        <About/>
+        <TabBar/>
       </ScrollView>
     );
   }
@@ -34,4 +32,4 @@ const propTypes = {
   }),
 };
 
-export default ElectionsScreen;
+export default CandidatesScreen;

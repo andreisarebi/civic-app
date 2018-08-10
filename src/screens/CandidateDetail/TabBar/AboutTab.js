@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import Colors from '../../styles/colors';
+import Colors from '../../../styles/colors';
 
 // Components
-import SocialLinks from './SocialLinks';
+import SocialLinks from '../SocialLinks';
 
 const candidateData = {
   platformList: [
@@ -46,7 +46,7 @@ const Platform = ({platformList}) =>
     <Text style={styles.readMoreText}>Read more</Text>
   </View>
 
-const About = props =>
+const AboutScreen = props =>
   <View style={styles.container}>
     <Biography {...candidateData}/>
     <Platform {...candidateData}/>
@@ -74,4 +74,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default About;
+export default AboutScreen;

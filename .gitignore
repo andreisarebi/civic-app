@@ -23,3 +23,6 @@ yarn-error.log*
 .project/
 .vscode/
 .vs/
+
+# demon spawn
+.DS_Store

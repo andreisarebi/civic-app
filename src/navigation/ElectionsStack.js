@@ -1,14 +1,13 @@
 import { createStackNavigator } from 'react-navigation';
 import ElectionsScreen from '../screens/Elections';
-import CandidateDetailScreen from '../screens/CandidateDetail';
-
+import CandidateDetail from '../screens/CandidateDetail';
 import styles from './styles';
 import colors from '../styles/colors';
 
 const ElectionsStack = createStackNavigator(
   {
     Elections: ElectionsScreen,
-    CandidateDetail: CandidateDetailScreen,
+    CandidateDetail: CandidateDetail,
   },
   {
     navigationOptions: {
