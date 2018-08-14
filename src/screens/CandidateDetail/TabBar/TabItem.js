@@ -7,7 +7,7 @@ const tween = ({ value, toValue, useNativeDriver }) =>
   Animated.timing(value, {
     toValue,
     useNativeDriver,
-    duration: 400
+    duration: 300
   });
 
 const config = {
@@ -36,7 +36,7 @@ const TabItem = ({handlePress, name, selectedTab}) =>
       </Text>
     </TouchableHighlight>
     <Line
-      style={styles.line}
+      style={selectedTab===name ? styles.line : {}}
       pose={selectedTab===name ? 'visible': 'hidden'}
     />
   </View>

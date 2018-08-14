@@ -28,8 +28,8 @@ CandidateDetail.propTypes = {
 
 const CandidatePreview = props => {
   const matchPercent = 98;
-  const partyPreference = "Democrat";
-  const positions = ["President of the United States"];
+  const partyPreference = 'Democrat';
+  const positions = ['President of the United States'];
   return(
     <View style={styles.previewContainer}>
       <View style={styles.container}>
@@ -58,7 +58,7 @@ CandidatePreview.propTypes = {
 };
 
 const Favorite = props => (
-  <View styles={styles.favorite}>
+  <View style={styles.favoriteContainer}>
     <Icon
       name={props.isFavorite ? 'star' : 'star-border'}
       onPress={() => props.onToggleFavorite()}
@@ -87,10 +87,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   favorite: {
-    color: Colors.orange,
+    color: Colors.orange
+  },
+  favoriteContainer: {
     position: 'absolute',
-    right: 0,
-    top: 0,
+    right: 10,
+    top: 10,
   },
   nameText: {
     fontSize: 21,
