@@ -12,8 +12,9 @@ class TaskItem extends Component {
           !userResponse ?
           <SurveyQuestion {...this.props}/>
           :
-          <View>
-            <Text>63% of Californians Agree!</Text>
+          <View style={styles.responseView}>
+            <Text style={styles.responseHeader}>63%</Text>
+            <Text style={styles.responseText}>63% of California also said {userResponse.toLowerCase()}.</Text>
           </View>
         }
       </View>
@@ -27,6 +28,21 @@ const styles = StyleSheet.create({
     width: 300,
     height: 166,
     marginRight: 10
+  },
+  responseView: {
+    padding: 20,
+    backgroundColor: Colors.darkBlue,
+    flex: 1,
+    alignItems: 'center'
+  },
+  responseHeader: {
+    fontSize: 48,
+    fontWeight: 'bold',
+    color: Colors.white
+  },
+  responseText: {
+    fontSize: 18,
+    color: Colors.white
   }
 });
 
