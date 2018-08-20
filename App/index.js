@@ -1,3 +1,7 @@
+console.ignoredYellowBox = [
+'Setting a timer'
+];
+
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Dimensions } from 'react-native';
