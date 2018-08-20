@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, ScrollView, FlatList, View, Text } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import Banner, { mapAlertLevelToColor } from './Banner';
-import TaskItem from './TaskItem';
 import colors from '../../styles/colors';
+import DailyTasks from './DailyTasks';
 
 // eventually this will be in state
 const alerts = [
@@ -23,11 +23,13 @@ const dailyTasks = [
     id: 'task1',
     heading: 'Narrow your matches',
     content: 'Do you think the U.S. should be more lenient on immigration?',
+    userAgrees: null
   },
   {
     id: 'task2',
     heading: 'Narrow your matches',
     content: 'Should there be limits on donations to political campaigns?',
+    userResponse: ''
   },
 ]
 
@@ -49,16 +51,7 @@ class HomeScreen extends React.Component {
             subtitle={alert.subtitle}
           />
         ))}
-        <View>
-          <Text style={styles.sectionHeader}>DAILY TASKS</Text>
-          <FlatList
-            horizontal={true}
-            style={styles.taskList}
-            data={dailyTasks}
-            keyExtractor={item => item.id}
-            renderItem={({item}) => <TaskItem {...item} />}
-          />
-        </View>
+        <DailyTasks data={dailyTasks}/>
       </ScrollView>
     );
   }
@@ -75,14 +68,6 @@ const styles = StyleSheet.create({
   banner: {
     marginTop: 8,
   },
-  taskList: {
-    flex: 1
-  },
-  sectionHeader: {
-    fontSize: 14,
-    margin: 18,
-    color: colors.gray
-  }
 });
 
 export default HomeScreen;
