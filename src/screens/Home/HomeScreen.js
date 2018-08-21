@@ -4,6 +4,10 @@ import Banner, { mapAlertLevelToColor } from './Banner';
 import Colors from '../../styles/colors';
 import DailyTasks from './DailyTasks';
 import UpcomingActivism from './UpcomingActivism';
+import NewsCard from '../CandidateDetail/TabBar/NewsCard';
+
+// Date Helper for mocking date data
+import subHours from 'date-fns/sub_hours';
 
 // eventually this will be in state
 const alerts = [
@@ -39,14 +43,24 @@ const upcomingActivism = [
     id: 'activism1',
     title: `Women's March 2018`,
     imgUrl: '',
-    dateTime: new Date(2018, 11, 18, 12)
+    eventDate: new Date(2018, 11, 18, 12)
   },
   {
     id: 'activism2',
     title: 'Some Other March 2018',
     imgUrl: '',
-    dateTime: new Date(2018, 11, 19, 12)
+    eventDate: new Date(2018, 11, 19, 12)
   },
+]
+
+const testImage = require('../../assets/images/gavin.png');
+const newsItems = [
+  {
+    id: 1,
+    title: 'Does Gavin Newsom represent a shift in California Democratic Party?',
+    img: testImage,
+    createdAt: subHours(Date.now(), 3)
+  }
 ]
 
 class HomeScreen extends React.Component {
@@ -77,6 +91,10 @@ class HomeScreen extends React.Component {
         {/* Upcoming Activism */}
         <Text style={styles.sectionHeader}>UPCOMING ACTIVISM</Text>
         <UpcomingActivism data={upcomingActivism}/>
+
+        {/* In The News */}
+        <Text style={styles.sectionHeader}>IN THE NEWS</Text>
+        {newsItems.map(({id, ...rest})=><NewsCard key={id} {...rest}/>)}
       </ScrollView>
     );
   }

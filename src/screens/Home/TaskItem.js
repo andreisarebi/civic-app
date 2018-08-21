@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: Colors.darkBlue,
     flex: 1,
-    alignItems: 'center'
   },
   responseHeader: {
     fontSize: 48,
