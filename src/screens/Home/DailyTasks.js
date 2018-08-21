@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { StyleSheet, FlatList } from 'react-native';
 import TaskItem from './TaskItem';
 import Colors from '../../styles/colors';
 
@@ -25,16 +25,13 @@ export default class DailyTasks extends Component {
   render(){
     const { updateResponse } = this;
     return(
-      <View>
-        <Text style={styles.sectionHeader}>DAILY TASKS</Text>
-        <FlatList
-          horizontal={true}
-          style={styles.taskList}
-          data={this.state.data}
-          keyExtractor={item => item.id}
-          renderItem={({item}) => <TaskItem updateResponse={updateResponse} {...item} />}
-        />
-      </View>
+      <FlatList
+        horizontal={true}
+        style={styles.taskList}
+        data={this.state.data}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => <TaskItem updateResponse={updateResponse} {...item} />}
+      />
     )
   }
 }
@@ -43,9 +40,4 @@ const styles = StyleSheet.create({
   taskList: {
     flex: 1
   },
-  sectionHeader: {
-    fontSize: 14,
-    margin: 18,
-    color: Colors.gray
-  }
 });

@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import Banner, { mapAlertLevelToColor } from './Banner';
-import colors from '../../styles/colors';
+import Colors from '../../styles/colors';
 import DailyTasks from './DailyTasks';
+import UpcomingActivism from './UpcomingActivism';
 
 // eventually this will be in state
 const alerts = [
@@ -33,6 +34,21 @@ const dailyTasks = [
   },
 ]
 
+const upcomingActivism = [
+  {
+    id: 'activism1',
+    title: `Women's March 2018`,
+    imgUrl: '',
+    dateTime: new Date(2018, 11, 18, 12)
+  },
+  {
+    id: 'activism2',
+    title: 'Some Other March 2018',
+    imgUrl: '',
+    dateTime: new Date(2018, 11, 19, 12)
+  },
+]
+
 class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home',
@@ -40,7 +56,9 @@ class HomeScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+      >
         {alerts.map((alert, index) => (
           <Banner
             key={index}
@@ -51,7 +69,14 @@ class HomeScreen extends React.Component {
             subtitle={alert.subtitle}
           />
         ))}
+
+        {/* Daily Tasks */}
+        <Text style={styles.sectionHeader}>DAILY TASKS</Text>
         <DailyTasks data={dailyTasks}/>
+
+        {/* Upcoming Activism */}
+        <Text style={styles.sectionHeader}>UPCOMING ACTIVISM</Text>
+        <UpcomingActivism data={upcomingActivism}/>
       </ScrollView>
     );
   }
@@ -59,15 +84,17 @@ class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    paddingLeft: 8,
-    paddingRight: 8,
-    paddingBottom: 8,
+    padding: 8,
+    paddingTop: 0,
   },
   banner: {
     marginTop: 8,
   },
+  sectionHeader: {
+    fontSize: 14,
+    margin: 18,
+    color: Colors.gray
+  }
 });
 
 export default HomeScreen;

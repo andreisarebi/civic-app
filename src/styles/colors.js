@@ -4,6 +4,7 @@ export default {
   facebookBlue: '#3c5a9a',
   gray: '#9B9B9B',
   green: '#49C019',
+  darkGray: '#999',
   lightBlue: '#2d9cdb',
   lightGray: '#2b2b2b',
   lightGray2: '#e0e0e0',

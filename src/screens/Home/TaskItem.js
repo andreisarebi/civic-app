@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   taskItem: {
     backgroundColor: Colors.white,
     width: 300,
-    height: 166,
+    height: 180,
     marginRight: 10
   },
   responseView: {
