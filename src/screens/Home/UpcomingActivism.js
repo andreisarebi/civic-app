@@ -23,6 +23,7 @@ const UpcomingActivism = ({data}) =>
       </View>
     )}
   />;
+  
 const styles = StyleSheet.create({
   eventList: {
     flex: 1
