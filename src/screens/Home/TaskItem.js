@@ -3,9 +3,39 @@ import { StyleSheet, View, Text } from 'react-native';
 import Colors from '../../styles/colors';
 import SurveyQuestion from './SurveyQuestion';
 
+const question1Result = {
+  yes: 63,
+  no: 37,
+  totalRespondants: 100,
+};
+
+const question2Result = {
+  yes: 12,
+  no: 88,
+  totalRespondants: 100,
+};
+
+const results = {
+  task1: question1Result,
+  task2: question2Result
+};
+
 class TaskItem extends Component {
+  renderPercentage = () => {
+    const { yes, no, totalRespondants } = results[this.props.id];
+    switch(this.props.userResponse){
+      case 'YES':
+        return `${parseInt(((yes/totalRespondants)*100),10)}%`;
+      case 'NO':
+        return `${parseInt(((no/totalRespondants)*100),10)}%`;
+      default:
+      return null;
+    }
+  }
+
   render(){
-    const { heading, content, updateResponse, userResponse } = this.props;
+    const { heading, content, updateResponse, userResponse, region } = this.props;
+    const { renderPercentage } = this;
     return(
       <View style={styles.taskItem}>
         {
@@ -13,8 +43,10 @@ class TaskItem extends Component {
           <SurveyQuestion {...this.props}/>
           :
           <View style={styles.responseView}>
-            <Text style={styles.responseHeader}>63%</Text>
-            <Text style={styles.responseText}>63% of California also said {userResponse.toLowerCase()}.</Text>
+            <Text style={styles.responseHeader}>
+              {renderPercentage()}
+            </Text>
+            <Text style={styles.responseText}>{renderPercentage()} of {region} also said {userResponse.toLowerCase()}.</Text>
           </View>
         }
       </View>

@@ -6,60 +6,8 @@ import Colors from '../../styles/colors';
 import DailyTasks from './DailyTasks';
 import UpcomingActivism from './UpcomingActivism';
 import NewsCard from '../CandidateDetail/TabBar/NewsCard';
-
-// eventually this will be in state
-const alerts = [
-  {
-    title: 'Not Registered to Vote?',
-    subtitle: 'Click here to get started',
-    level: 'high',
-  },
-  {
-    title: 'Something is going on in your city!',
-    subtitle: 'Click here to find out more',
-    level: 'medium',
-  },
-];
-
-const dailyTasks = [
-  {
-    id: 'task1',
-    heading: 'Narrow your matches',
-    content: 'Do you think the U.S. should be more lenient on immigration?',
-    userAgrees: null
-  },
-  {
-    id: 'task2',
-    heading: 'Narrow your matches',
-    content: 'Should there be limits on donations to political campaigns?',
-    userResponse: ''
-  },
-]
-
-const upcomingActivism = [
-  {
-    id: 'activism1',
-    title: `Women's March 2018`,
-    imgUrl: '',
-    eventDate: new Date(2018, 11, 18, 12)
-  },
-  {
-    id: 'activism2',
-    title: 'Some Other March 2018',
-    imgUrl: '',
-    eventDate: new Date(2018, 11, 19, 12)
-  },
-]
-
-const testImage = require('../../assets/images/gavin.png');
-const newsItems = [
-  {
-    id: 1,
-    title: 'Does Gavin Newsom represent a shift in California Democratic Party?',
-    img: testImage,
-    createdAt: new Date(2018, 8, 18, 12)
-  }
-]
+// Mock Data
+import { newsItems, alerts, dailyTasks, upcomingActivism } from './mockData';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -92,7 +40,9 @@ class HomeScreen extends React.Component {
 
         {/* In The News */}
         <Text style={styles.sectionHeader}>IN THE NEWS</Text>
-        {newsItems.map(({id, ...rest})=><NewsCard key={id} {...rest}/>)}
+        {newsItems.map(({id, ...rest})=>(
+          <NewsCard key={id} {...rest}/>
+        ))}
 
         {/* All Caught Up Feed Footer */}
         <View style={styles.footerView}>
