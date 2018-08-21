@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, FlatList, View, Text, Image } from 'react-native';
 import DateTime from '../components/DateTime';
-
+import Mixins from '../../styles/mixins';
 import Colors from '../../styles/colors';
 const img = require('../../assets/images/womens-march.png');
 
@@ -29,10 +29,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     width: 300,
     flex: 1,
-    marginRight: 10,
+    margin: 8,
     flexDirection: 'row',
     justifyContent: "space-between",
     paddingLeft: 20,
+    ...Mixins.shadow
   },
   eventImage: {
     height: 112,

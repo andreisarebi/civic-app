@@ -27,6 +27,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     width: 300,
     height: 180,
+    margin: 8,
+    marginTop: 0,
     marginRight: 10
   },
   responseView: {

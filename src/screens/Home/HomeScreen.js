@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
+import { Icon } from 'react-native-elements';
 import Banner, { mapAlertLevelToColor } from './Banner';
 import Colors from '../../styles/colors';
 import DailyTasks from './DailyTasks';
@@ -95,6 +96,18 @@ class HomeScreen extends React.Component {
         {/* In The News */}
         <Text style={styles.sectionHeader}>IN THE NEWS</Text>
         {newsItems.map(({id, ...rest})=><NewsCard key={id} {...rest}/>)}
+
+        {/* All Caught Up Feed Footer */}
+        <View style={styles.footerView}>
+          <Text style={styles.footerText}>You're all caught up for today.</Text>
+          <Icon
+            name="megaphone"
+            type="entypo"
+            size={50}
+            color="#DADADA"
+            containerStyle={styles.footerIcon}
+          />
+        </View>
       </ScrollView>
     );
   }
@@ -112,6 +125,17 @@ const styles = StyleSheet.create({
     fontSize: 14,
     margin: 18,
     color: Colors.gray
+  },
+  footerView:{
+    alignItems: 'center',
+    margin: 50,
+  },
+  footerText: {
+    color: "#555",
+    fontSize: 16
+  },
+  footerIcon: {
+    margin:20
   }
 });
 
