@@ -61,11 +61,8 @@ exports[`Banner renders correctly 1`] = `
         Do it!
       </Text>
       <Icon
-        allowFontScaling={false}
         color="#ffffff"
-        name={undefined}
-        size={60}
-        style={
+        containerStyle={
           Object {
             "bottom": 0,
             "opacity": 0.5,
@@ -73,6 +70,13 @@ exports[`Banner renders correctly 1`] = `
             "right": 20,
           }
         }
+        name={undefined}
+        raised={false}
+        reverse={false}
+        reverseColor="white"
+        size={60}
+        type="entypo"
+        underlayColor="white"
       />
     </Component>
   </TouchableHighlight>

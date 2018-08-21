@@ -7,9 +7,6 @@ import DailyTasks from './DailyTasks';
 import UpcomingActivism from './UpcomingActivism';
 import NewsCard from '../CandidateDetail/TabBar/NewsCard';
 
-// Date Helper for mocking date data
-import subHours from 'date-fns/sub_hours';
-
 // eventually this will be in state
 const alerts = [
   {
@@ -60,7 +57,7 @@ const newsItems = [
     id: 1,
     title: 'Does Gavin Newsom represent a shift in California Democratic Party?',
     img: testImage,
-    createdAt: subHours(Date.now(), 3)
+    createdAt: new Date(2018, 8, 18, 12)
   }
 ]
 
