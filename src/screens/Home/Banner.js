@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 3,
+    margin: 8,
   },
   icon: {
     opacity: 0.5,

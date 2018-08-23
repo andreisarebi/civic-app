@@ -50,6 +50,6 @@ export const newsItems = [
     id: 1,
     title: 'Does Gavin Newsom represent a shift in California Democratic Party?',
     img: testImage,
-    createdAt: new Date(2018, 8, 18, 12)
+    createdAt: new Date(2018,7, 18, 12)
   }
 ];

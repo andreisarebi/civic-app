@@ -52,12 +52,14 @@ exports[`HomeScreen renders correctly 1`] = `
           "content": "Do you think the U.S. should be more lenient on immigration?",
           "heading": "Narrow your matches",
           "id": "task1",
-          "userAgrees": null,
+          "region": "California",
+          "userResponse": "",
         },
         Object {
           "content": "Should there be limits on donations to political campaigns?",
           "heading": "Narrow your matches",
           "id": "task2",
+          "region": "California",
           "userResponse": "",
         },
       ]
@@ -81,13 +83,13 @@ exports[`HomeScreen renders correctly 1`] = `
     data={
       Array [
         Object {
-          "eventDate": 2018-12-18T12:00:00.000Z,
+          "eventDate": 2018-12-18T20:00:00.000Z,
           "id": "activism1",
           "imgUrl": "",
           "title": "Women's March 2018",
         },
         Object {
-          "eventDate": 2018-12-19T12:00:00.000Z,
+          "eventDate": 2018-12-19T20:00:00.000Z,
           "id": "activism2",
           "imgUrl": "",
           "title": "Some Other March 2018",
@@ -110,7 +112,7 @@ exports[`HomeScreen renders correctly 1`] = `
     IN THE NEWS
   </Text>
   <NewsCard
-    createdAt={2018-09-18T12:00:00.000Z}
+    createdAt={2018-09-18T19:00:00.000Z}
     img={1}
     title="Does Gavin Newsom represent a shift in California Democratic Party?"
   />

@@ -5,7 +5,7 @@ import Banner, { mapAlertLevelToColor } from './Banner';
 import Colors from '../../styles/colors';
 import DailyTasks from './DailyTasks';
 import UpcomingActivism from './UpcomingActivism';
-import NewsCard from '../CandidateDetail/TabBar/NewsCard';
+import NewsCard from '../components/NewsCard';
 // Mock Data
 import { newsItems, alerts, dailyTasks, upcomingActivism } from './mockData';
 
@@ -62,7 +62,6 @@ class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 8,
     paddingTop: 0,
   },
   banner: {

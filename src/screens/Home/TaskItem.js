@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Colors from '../../styles/colors';
+import Mixins from '../../styles/mixins';
 import SurveyQuestion from './SurveyQuestion';
+
+// Assumes that there will be some way to compare user's response to a
+// survey question to the total number of respondants
 
 const question1Result = {
   yes: 63,
@@ -60,8 +64,8 @@ const styles = StyleSheet.create({
     width: 300,
     height: 180,
     margin: 8,
-    marginTop: 0,
-    marginRight: 10
+    marginRight: 10,
+    ...Mixins.shadow
   },
   responseView: {
     padding: 20,

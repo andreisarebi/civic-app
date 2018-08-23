@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet } from 'react-native';
 import { Icon } from 'react-native-elements'
-import Colors from '../../../styles/colors';
-import Mixins from '../../../styles/mixins';
+import Colors from '../../styles/colors';
+import Mixins from '../../styles/mixins';
 import PropTypes from 'prop-types';
-import DateTime from '../../components/DateTime';
+import DateTime from './DateTime';
 
 const NewsCard = ({img, title, createdAt}) => {
   return(

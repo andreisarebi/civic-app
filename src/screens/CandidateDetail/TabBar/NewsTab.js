@@ -1,6 +1,7 @@
 import React from 'react';
 import {View } from 'react-native';
-import NewsCard from './NewsCard';
+import NewsCard from '../../components/NewsCard';
+
 // Date Helper for mocking date data
 import subHours from 'date-fns/sub_hours';
 
@@ -11,7 +12,7 @@ const newsItems = [
     id: 1,
     title: 'Does Gavin Newsom represent a shift in California Democratic Party?',
     img: testImage,
-    createdAt: subHours(Date.now(), 3)
+    createdAt: new Date(2018, 9, 18, 12)
   }
 ]
 
