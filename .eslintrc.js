@@ -5,7 +5,13 @@ module.exports = {
     es6: true,
     jest: true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:import/errors', 'plugin:import/warnings'],
+  extends: [
+    'eslint:recommended',
+    'airbnb',
+    'plugin:react/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+  ],
   globals: {
     process: false,
   },
@@ -28,9 +34,11 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
     'max-len': ['error', { code: 120, ignoreComments: true }],
     quotes: ['error', 'single'],
+    'react/destructuring-assignment': 0,
+    'react/display-name': 0,
+    'react/jsx-filename-extension': 0,
     'react-native/no-unused-styles': 2,
     'react-native/split-platform-components': 2,
     'react-native/no-inline-styles': 2,
-    'react/display-name': 0,
   },
 };
