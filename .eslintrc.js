@@ -5,7 +5,7 @@ module.exports = {
     es6: true,
     jest: true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:import/errors', 'plugin:import/warnings'],
   globals: {
     process: false,
   },
@@ -18,6 +18,11 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', 'react-native'],
+  settings: {
+    react: {
+      version: '16.3.1',
+    },
+  },
   rules: {
     indent: ['error', 2, { SwitchCase: 1 }],
     'linebreak-style': ['error', 'unix'],
