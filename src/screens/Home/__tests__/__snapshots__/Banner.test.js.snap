@@ -8,6 +8,7 @@ exports[`Banner renders correctly 1`] = `
         "alignSelf": "stretch",
         "borderRadius": 2,
         "justifyContent": "center",
+        "margin": 8,
         "minHeight": 100,
         "padding": 16,
         "shadowColor": "#000000",

@@ -4,7 +4,6 @@ exports[`HomeScreen renders correctly 1`] = `
 <ScrollView
   contentContainerStyle={
     Object {
-      "padding": 8,
       "paddingTop": 0,
     }
   }
@@ -83,13 +82,13 @@ exports[`HomeScreen renders correctly 1`] = `
     data={
       Array [
         Object {
-          "eventDate": 2018-12-18T20:00:00.000Z,
+          "eventDate": 2018-12-18T12:00:00.000Z,
           "id": "activism1",
           "imgUrl": "",
           "title": "Women's March 2018",
         },
         Object {
-          "eventDate": 2018-12-19T20:00:00.000Z,
+          "eventDate": 2018-12-19T12:00:00.000Z,
           "id": "activism2",
           "imgUrl": "",
           "title": "Some Other March 2018",
@@ -112,7 +111,7 @@ exports[`HomeScreen renders correctly 1`] = `
     IN THE NEWS
   </Text>
   <NewsCard
-    createdAt={2018-09-18T19:00:00.000Z}
+    createdAt={2018-08-18T12:00:00.000Z}
     img={1}
     title="Does Gavin Newsom represent a shift in California Democratic Party?"
   />
