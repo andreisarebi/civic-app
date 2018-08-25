@@ -1,6 +1,7 @@
 import React from 'react';
 import {View } from 'react-native';
 import NewsCard from '../../components/NewsCard';
+import PropTypes from 'prop-types';
 
 // Date Helper for mocking date data
 import subHours from 'date-fns/sub_hours';
@@ -19,8 +20,12 @@ const newsItems = [
 const NewsTab = (props) => {
   return (
     <View>
-      {newsItems.map(({id, ...rest})=><NewsCard key={id} {...rest}/>)}
+      {props.newsItems.map(({id, ...rest})=><NewsCard key={id} {...rest}/>)}
     </View>);
-}
+};
+
+NewsTab.propTypes = {
+  newsItems: PropTypes.array,
+};
 
 export default NewsTab;

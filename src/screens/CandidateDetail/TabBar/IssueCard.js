@@ -62,11 +62,11 @@ class IssueCard extends Component {
             </View>
           </View>
         </TouchableHighlight>
-          { isExpanded &&
-            <Text style={styles.issueBody}>
-              {body}
-            </Text>
-          }
+        {isExpanded &&
+          <Text style={styles.issueBody}>
+            {body}
+          </Text>
+        }
       </Wrapper>
     )
   }
