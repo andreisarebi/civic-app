@@ -1,30 +1,31 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 import AboutTab from './AboutTab';
 import MatchTab from './MatchTab';
 import NewsTab from './NewsTab';
 import TabItem from './TabItem';
 
 class TabBar extends Component {
-  state = { selectedTab: 'Match' }
+  state = { selectedTab: 'Match' };
 
   // Replace with Redux Action
   renderSelectedView = () => {
     switch (this.state.selectedTab) {
       case 'Match':
-        return <MatchTab />;
+        return <MatchTab {...this.props.matchTab} />;
       case 'About':
-        return <AboutTab />;
+        return <AboutTab {...this.props.aboutTab} />;
       case 'News':
-        return <NewsTab />;
+        return <NewsTab {...this.props.newsTab} />;
       default:
         return null;
     }
-  }
+  };
 
   handlePress = (selectedTab) => {
     this.setState({ selectedTab });
-  }
+  };
 
   render() {
     const { handlePress, renderSelectedView } = this;
@@ -32,29 +33,21 @@ class TabBar extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.tabContainer}>
-          <TabItem
-            name="Match"
-            selectedTab={selectedTab}
-            handlePress={handlePress}
-          />
-          <TabItem
-            name="About"
-            selectedTab={selectedTab}
-            handlePress={handlePress}
-          />
-          <TabItem
-            name="News"
-            selectedTab={selectedTab}
-            handlePress={handlePress}
-          />
+          <TabItem name="Match" selectedTab={selectedTab} handlePress={handlePress} />
+          <TabItem name="About" selectedTab={selectedTab} handlePress={handlePress} />
+          <TabItem name="News" selectedTab={selectedTab} handlePress={handlePress} />
         </View>
-        <View styles={styles.viewArea}>
-          {renderSelectedView()}
-        </View>
+        <View styles={styles.viewArea}>{renderSelectedView()}</View>
       </View>
     );
   }
 }
+
+TabBar.propTypes = {
+  matchTab: PropTypes.shape(MatchTab.proptypes).isRequired,
+  aboutTab: PropTypes.shape(AboutTab.proptypes).isRequired,
+  newsTab: PropTypes.shape(NewsTab.proptypes).isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {

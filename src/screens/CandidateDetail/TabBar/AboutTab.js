@@ -6,23 +6,11 @@ import Colors from '../../../styles/colors';
 // Components
 import SocialLinks from '../SocialLinks';
 
-const candidateData = {
-  platformList: [
-    { id: 'key1', content: 'Colonize Space' },
-    { id: 'key2', content: 'Healthcare for All' },
-    { id: 'key3', content: 'Kick Names and Take Ass' },
-  ],
-  bioContent:
-    'Lorem ipsum dolor amet woke artisan ennui umami. Street art fixie salvia cray +1 pug chartreuse typewriter art party asymmetrical. Craft beer ramps tousled chillwave. Marfa ennui chicharrones etsy keytar sustainable tote bag synth salvia la croix listicle raclette locavore next level humblebrag. Hoodie kitsch selvage, DIY salvia single-origin coffee thundercats irony hammock meh shaman.',
-  socials: {
-    facebook: '',
-    phone: '',
-    email: '',
-    twitter: '',
-  },
-};
-
 const Biography = ({ bioContent }) => (
+  /**
+   * Biography Section > About Tab > CandidateDetail
+   * - prop  platformData - Array List of Objects with "id" & "content" keys
+   */
   <View style={styles.textContainer}>
     <Text style={styles.heading}>Biography</Text>
     <Text>{bioContent}</Text>
@@ -33,6 +21,10 @@ const Biography = ({ bioContent }) => (
 Biography.propTypes = { bioContent: PropTypes.string.isRequired };
 
 const Platform = ({ platformList }) => (
+  /**
+   * Platform Section > About Tab > CandidateDetail
+   * - prop {array} platformList - Array List of Objects with "id" & "content" keys
+   */
   <View style={styles.textContainer}>
     <Text style={styles.heading}>Platform</Text>
     <FlatList
@@ -58,13 +50,19 @@ Platform.propTypes = {
   ).isRequired,
 };
 
-const AboutScreen = () => (
+const AboutScreen = props => (
   <View style={styles.container}>
-    <Biography {...candidateData} />
-    <Platform {...candidateData} />
-    <SocialLinks {...candidateData.socials} size={28} color={Colors.lightBlue} />
+    <Biography bioContent={props.bioContent} />
+    <Platform platformList={props.platformList} />
+    <SocialLinks {...props.socials} size={28} color={Colors.lightBlue} />
   </View>
 );
+
+AboutScreen.propTypes = {
+  bioContent: PropTypes.string.isRequired,
+  platformList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  socials: PropTypes.shape(SocialLinks.propTypes).isRequired,
+};
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
