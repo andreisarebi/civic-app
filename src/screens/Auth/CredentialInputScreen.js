@@ -14,7 +14,7 @@ const CredentialInputScreen = (props) => {
       case formTypes.LOGIN:
         return {
           titleText: 'Sign in',
-          changeFormText: "Don't have an account yet? Register",
+          changeFormText: 'Don\'t have an account yet? Register',
           otherFormType: formTypes.SIGN_UP,
           googleButtonText: 'Sign in with Google',
         };

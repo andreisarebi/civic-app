@@ -48,7 +48,7 @@ class WelcomePanel extends React.Component {
         case formTypes.LOGIN:
           return {
             preposition: 'in',
-            switchText: "Don't have an account yet? Register",
+            switchText: 'Don\'t have an account yet? Register',
             otherFormType: formTypes.SIGN_UP,
           };
         case formTypes.SIGN_UP:
@@ -138,9 +138,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 18,
   },
-  switchText: {
-    paddingBottom: 0,
-  },
+  switchText: { paddingBottom: 0 },
 });
 
 export default WelcomePanel;

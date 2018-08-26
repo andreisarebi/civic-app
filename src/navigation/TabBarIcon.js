@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Entypo } from '@expo/vector-icons';
 
-const TabBarIcon = props => {
+const TabBarIcon = (props) => {
   const { routeName } = props.navigation.state;
   let iconName;
   switch (routeName) {
@@ -25,12 +25,8 @@ const TabBarIcon = props => {
 };
 
 TabBarIcon.propTypes = {
-  navigation: PropTypes.shape({
-    state: PropTypes.shape({
-      routeName: PropTypes.string,
-    }),
-  }),
-  tintColor: PropTypes.string,
+  navigation: PropTypes.shape({ state: PropTypes.shape({ routeName: PropTypes.string }) }).isRequired,
+  tintColor: PropTypes.string.isRequired,
 };
 
 export default TabBarIcon;

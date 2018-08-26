@@ -6,46 +6,44 @@ import NewsTab from './NewsTab';
 import TabItem from './TabItem';
 
 class TabBar extends Component {
-  state = {
-    selectedTab: 'Match',
-  }
+  state = { selectedTab: 'Match' }
 
   // Replace with Redux Action
   renderSelectedView = () => {
-    switch(this.state.selectedTab){
+    switch (this.state.selectedTab) {
       case 'Match':
-        return <MatchTab/>;
+        return <MatchTab />;
       case 'About':
-        return <AboutTab/>;
+        return <AboutTab />;
       case 'News':
-        return <NewsTab/>;
+        return <NewsTab />;
       default:
         return null;
     }
   }
 
   handlePress = (selectedTab) => {
-    this.setState({selectedTab})
+    this.setState({ selectedTab });
   }
 
-  render(){
+  render() {
     const { handlePress, renderSelectedView } = this;
     const { selectedTab } = this.state;
-    return(
+    return (
       <View style={styles.container}>
         <View style={styles.tabContainer}>
           <TabItem
-            name='Match'
+            name="Match"
             selectedTab={selectedTab}
             handlePress={handlePress}
           />
           <TabItem
-            name='About'
+            name="About"
             selectedTab={selectedTab}
             handlePress={handlePress}
           />
           <TabItem
-            name='News'
+            name="News"
             selectedTab={selectedTab}
             handlePress={handlePress}
           />
@@ -54,7 +52,7 @@ class TabBar extends Component {
           {renderSelectedView()}
         </View>
       </View>
-    )
+    );
   }
 }
 
@@ -66,8 +64,8 @@ const styles = StyleSheet.create({
   tabContainer: {
     height: 70,
     flexDirection: 'row',
-    justifyContent: 'space-between'
-  }
+    justifyContent: 'space-between',
+  },
 });
 
 export default TabBar;

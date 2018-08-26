@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import { Provider } from 'react-redux';
@@ -18,3 +19,4 @@ export const createConnectedSnapshot = (Component, props) => {
   );
   return renderer.getRenderOutput();
 };
+/* eslint-enable import/no-extraneous-dependencies */

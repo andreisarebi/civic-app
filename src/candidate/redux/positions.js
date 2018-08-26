@@ -1,6 +1,5 @@
 // Selectors
-export const getPositionsForCandidate = (state, candidateId) =>
-  state[POSITIONS_NAMESPACE][candidateId];
+export const getPositionsForCandidate = (state, candidateId) => state[POSITIONS_NAMESPACE][candidateId];
 
 // Action Creators
 export const positionsRequestSuccess = positions => ({
@@ -8,9 +7,7 @@ export const positionsRequestSuccess = positions => ({
   payload: positions,
 });
 
-export const PositionsActionType = {
-  RequestSuccess: 'civicApp/positions/requestSuccess',
-};
+export const PositionsActionType = { RequestSuccess: 'civicApp/positions/requestSuccess' };
 
 export const POSITIONS_NAMESPACE = 'positions';
 

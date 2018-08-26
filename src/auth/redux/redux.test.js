@@ -1,4 +1,4 @@
-import authReducer, { AUTH_NAMESPACE } from '../redux';
+import authReducer, { AUTH_NAMESPACE } from '.';
 import { loginSuccess, logOutSuccess } from './userReducer';
 import { getLoggedInUser, getIsLoggedIn } from './selectors';
 import { toFakeUser } from '../doubles';
@@ -6,9 +6,7 @@ import { toFakeUser } from '../doubles';
 const toUser = () => toFakeUser();
 const toLoggedOutState = () => ({ user: undefined });
 const toLoggedInState = () => ({ user: toUser() });
-const toAuthSelectorState = reducerState => ({
-  [AUTH_NAMESPACE]: reducerState,
-});
+const toAuthSelectorState = reducerState => ({ [AUTH_NAMESPACE]: reducerState });
 
 describe('auth reducer', () => {
   it('should set user on login success', () => {

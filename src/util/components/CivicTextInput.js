@@ -5,10 +5,15 @@ import colors from '../../styles/colors';
 
 class CivicTextInput extends React.Component {
   static propTypes = {
-    // TODO: list all other TextInput props
     onBlur: PropTypes.func,
     onFocus: PropTypes.func,
-    style: PropTypes.any,
+    style: TextInput.propTypes.style,
+  };
+
+  static defaultProps = {
+    onBlur: undefined,
+    onFocus: undefined,
+    style: {},
   };
 
   constructor(props) {

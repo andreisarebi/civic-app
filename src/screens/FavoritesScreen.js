@@ -3,9 +3,7 @@ import { View, Text } from 'react-native';
 import styles from './styles';
 
 class FavoritesScreen extends React.Component {
-  static navigationOptions = {
-    title: 'My Favorites',
-  };
+  static navigationOptions = { title: 'My Favorites' };
 
   render() {
     return (

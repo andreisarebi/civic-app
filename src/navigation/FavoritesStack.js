@@ -4,9 +4,7 @@ import FavoritesScreen from '../screens/FavoritesScreen';
 import styles from './styles';
 
 const FavoritesStack = createStackNavigator(
-  {
-    Favorites: FavoritesScreen,
-  },
+  { Favorites: FavoritesScreen },
   {
     navigationOptions: {
       headerStyle: styles.header,

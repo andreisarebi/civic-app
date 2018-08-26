@@ -7,9 +7,7 @@ export const getCandidates = (state, viewMapper) => (
 
 // Action Creators
 
-export const loadCandidates = () => ({
-  type: CandidateActionType.Request,
-});
+export const loadCandidates = () => ({ type: CandidateActionType.Request });
 
 export const loadCandidatesSuccess = candidate => ({
   type: CandidateActionType.RequestSuccess,

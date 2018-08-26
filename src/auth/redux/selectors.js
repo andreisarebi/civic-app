@@ -5,6 +5,7 @@ import { parseErrorResponse } from '../api';
 
 // User
 export const getLoggedInUser = state => state[AUTH_NAMESPACE][USER_NAMESPACE].user;
+export const getLoggedInUserId = state => state[AUTH_NAMESPACE][USER_NAMESPACE].user.uid;
 export const getIsLoggedIn = state => !!getLoggedInUser(state);
 export const getAuthError = state => state[AUTH_NAMESPACE][USER_NAMESPACE].error;
 export const getIsLoading = state => state[AUTH_NAMESPACE][USER_NAMESPACE].loading;

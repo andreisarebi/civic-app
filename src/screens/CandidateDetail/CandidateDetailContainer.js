@@ -5,14 +5,10 @@ import CandidateDetail from './CandidateDetail';
 import { toggleFavorite } from '../../favorites/redux';
 
 const Container = connect(
-  (state, ownProps) => ({
-    summary: getCandidateSummary(state, ownProps.candidateId),
-  }),
+  (state, ownProps) => ({ summary: getCandidateSummary(state, ownProps.candidateId) }),
   { toggleFavorite },
 )(CandidateDetail);
 
-Container.PropTypes = {
-  candidateId: PropTypes.string,
-};
+Container.PropTypes = { candidateId: PropTypes.string };
 
 export default Container;

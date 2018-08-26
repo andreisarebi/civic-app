@@ -8,37 +8,53 @@ import { Category } from '../../favorites/models';
 const CandidateDetail = props => (
   <View style={styles.container}>
     {props.summary
-      ? <CandidatePreview
-        {...props.summary}
-        onToggleFavorite={() => props.toggleFavorite(props.candidateId, Category.Candidates)}
-      />
+      ? (
+        <CandidatePreview
+          {...props.summary}
+          onToggleFavorite={() => props.toggleFavorite(props.candidateId, Category.Candidates)}
+        />
+      )
       : <Text>Loading...</Text>
     }
   </View>
 );
 
 CandidateDetail.propTypes = {
-  summary: PropTypes.object,
-  toggleFavorite: PropTypes.func,
-  positions: PropTypes.array,
+  summary: PropTypes.shapeOf(CandidatePreview.propTypes).isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
+  positions: PropTypes.arrayOf(PropTypes.string),
   candidateId: PropTypes.string,
   partyPreference: PropTypes.string,
-  matchPercent: PropTypes.number
+  matchPercent: PropTypes.number,
 };
 
-const CandidatePreview = props => {
+CandidateDetail.defaultProps = {
+  positions: undefined,
+  candidateId: undefined,
+  partyPreference: undefined,
+  matchPercent: undefined,
+};
+
+const CandidatePreview = (props) => {
   const matchPercent = 98;
   const partyPreference = 'Democrat';
   const positions = ['President of the United States'];
-  return(
+  return (
     <View style={styles.previewContainer}>
       <View style={styles.container}>
         <Avatar xlarge rounded source={{ uri: props.imageURI }} />
         <Text style={styles.nameText}>{props.name}</Text>
-        <Text style={styles.positionsText}>Running for {positions[0]}</Text>
+        <Text style={styles.positionsText}>
+Running for
+          {positions[0]}
+        </Text>
         <Text>
-          <Text style={styles.matchText}>{matchPercent}% </Text>
-          match | {partyPreference}
+          <Text style={styles.matchText}>
+            {matchPercent}
+            {'% '}
+          </Text>
+          {'match | '}
+          {props.partyPreference || partyPreference}
         </Text>
       </View>
       <Favorite
@@ -46,15 +62,15 @@ const CandidatePreview = props => {
         onToggleFavorite={props.onToggleFavorite}
       />
     </View>
-  )
+  );
 };
 
 CandidatePreview.propTypes = {
-  name: PropTypes.string,
-  imageURI: PropTypes.string,
-  isFavorite: PropTypes.bool,
-  partyPreference: PropTypes.string,
-  onToggleFavorite: PropTypes.func,
+  name: PropTypes.string.isRequired,
+  imageURI: PropTypes.string.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  partyPreference: PropTypes.string.isRequired,
+  onToggleFavorite: PropTypes.func.isRequired,
 };
 
 const Favorite = props => (
@@ -69,8 +85,8 @@ const Favorite = props => (
 );
 
 Favorite.propTypes = {
-  isFavorite: PropTypes.bool,
-  onToggleFavorite: PropTypes.func,
+  isFavorite: PropTypes.bool.isRequired,
+  onToggleFavorite: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -86,9 +102,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  favorite: {
-    color: Colors.orange
-  },
+  favorite: { color: Colors.orange },
   favoriteContainer: {
     position: 'absolute',
     right: 10,
@@ -97,18 +111,18 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 21,
     paddingTop: 5,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   positionsText: {
     color: Colors.lightGray,
     paddingTop: 5,
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   matchText: {
     color: Colors.lightBlue,
     fontSize: 18,
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 });
 
 export default CandidateDetail;

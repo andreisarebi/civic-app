@@ -20,9 +20,7 @@ export async function signInWithGoogleAsync() {
 }
 
 export async function signInWithFacebookAsync() {
-  const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('206331633410454', {
-    permissions: ['email', 'public_profile'],
-  });
+  const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('206331633410454', { permissions: ['email', 'public_profile'] });
   if (type === 'success') {
     // Build Firebase credential with the Facebook access token.
     const credential = auth.FacebookAuthProvider.credential(token);

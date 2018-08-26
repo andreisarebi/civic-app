@@ -6,6 +6,7 @@ import styles from '../styles';
 
 class SurveyMainScreen extends React.Component {
   static propTypes = propTypes;
+
   goToApp = () => this.props.navigation.navigate('App');
 
   render() {
@@ -18,10 +19,10 @@ class SurveyMainScreen extends React.Component {
 }
 
 const propTypes = {
-  navigation: PropTypes.objectOf({
+  navigation: PropTypes.shape({
     navigate: PropTypes.func,
     push: PropTypes.func,
-  }),
+  }).isRequired,
 };
 
 export default SurveyMainScreen;

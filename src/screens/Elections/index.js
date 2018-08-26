@@ -5,12 +5,11 @@ import styles from '../styles';
 import Screen from './ScreenContainer';
 
 class ElectionsScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Elections',
-  };
+  static navigationOptions = { title: 'Elections' };
+
   static propTypes = propTypes;
 
-  goToCandidateDetail = (id) => () => this.props.navigation.navigate('CandidateDetail', { id });
+  goToCandidateDetail = id => () => this.props.navigation.navigate('CandidateDetail', { id });
 
   render() {
     return (
@@ -25,7 +24,7 @@ const propTypes = {
   navigation: PropTypes.objectOf({
     navigate: PropTypes.func,
     push: PropTypes.func,
-  }),
+  }).isRequired,
 };
 
 export default ElectionsScreen;

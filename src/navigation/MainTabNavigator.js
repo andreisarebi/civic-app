@@ -20,17 +20,11 @@ const MainTabNavigator = createBottomTabNavigator(
   },
   {
     initialRouteName: 'Home',
-    navigationOptions: ({ navigation }) => ({
-      tabBarIcon: props => <TabBarIcon navigation={navigation} {...props} />,
-    }),
+    navigationOptions: ({ navigation }) => ({ tabBarIcon: props => <TabBarIcon navigation={navigation} {...props} /> }),
     tabBarOptions: {
       activeTintColor: colors.orange,
-      labelStyle: {
-        fontSize: 14,
-      },
-      style: {
-        paddingTop: 5,
-      },
+      labelStyle: { fontSize: 14 },
+      style: { paddingTop: 5 },
     },
   },
 );

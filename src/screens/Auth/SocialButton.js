@@ -54,9 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderColor: colors.lightGray2,
   },
-  textStyle: {
-    flex: 3,
-  },
+  textStyle: { flex: 3 },
 });
 
 export default SocialButton;

@@ -1,7 +1,7 @@
 import { call, takeEvery, put } from 'redux-saga/effects';
-import authSaga, { loginSaga, logOutSaga, registerSaga } from './sagas';
-import { logIn as APILogIn, logOut as APILogOut, register as APIRegister, subscribeToAuthStateChanges } from './api';
-import { AuthUserActionType, logOutSuccess, loginSuccess, logIn, logOut, register } from './redux/userReducer';
+import authSaga, { emailLoginSaga, logOutSaga, registerSaga } from './sagas';
+import { logInWithEmailAndPassword as APILogIn, logOut as APILogOut, registerWithEmailAndPassword as APIRegister, subscribeToAuthStateChanges } from './api';
+import { AuthUserActionType, logOutSuccess, loginSuccess, emailLogin, logOut, register } from './redux/userReducer';
 import { toFakeUser } from './doubles';
 
 describe('authSaga', () => {

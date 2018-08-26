@@ -55,9 +55,7 @@ const mapStateToProps = state => ({
   isSmallScreen: getIsSmallScreen(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  changeFormType: type => dispatch(switchFormType(type)),
-});
+const mapDispatchToProps = dispatch => ({ changeFormType: type => dispatch(switchFormType(type)) });
 
 export default connect(
   mapStateToProps,

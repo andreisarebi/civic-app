@@ -14,9 +14,7 @@ const styles = StyleSheet.create({
     height: 32,
     width: 32,
   },
-  iconContainer: {
-    marginRight: 12,
-  },
+  iconContainer: { marginRight: 12 },
 });
 
 export default GoogleIcon;

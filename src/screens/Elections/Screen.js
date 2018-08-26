@@ -13,11 +13,11 @@ const ElectionsScreen = props => (
       />
     ))}
   </View>
-)
+);
 
 ElectionsScreen.propTypes = {
-  goToCandidateDetail: PropTypes.func,
-  candidates: PropTypes.array
-}
+  goToCandidateDetail: PropTypes.func.isRequired,
+  candidates: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, name: PropTypes.string })).isRequired,
+};
 
-export default ElectionsScreen
+export default ElectionsScreen;
