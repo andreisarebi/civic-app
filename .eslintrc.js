@@ -14,6 +14,7 @@ module.exports = {
   ],
   globals: {
     process: false,
+    require: false,
   },
   parser: 'babel-eslint',
   parserOptions: {
@@ -30,10 +31,13 @@ module.exports = {
     },
   },
   rules: {
-    indent: ['error', 2, { SwitchCase: 1 }],
-    'linebreak-style': ['error', 'unix'],
-    'max-len': ['error', { code: 120, ignoreComments: true }],
-    quotes: ['error', 'single'],
+    'func-names': 0,
+    indent: [2, 2, { SwitchCase: 1 }],
+    'linebreak-style': [2, 'unix'],
+    'max-len': [2, { code: 120, ignoreComments: true }],
+    'no-use-before-define': 0,
+    'prefer-promise-reject-errors': 0,
+    quotes: [0, 'single'],
     'react/destructuring-assignment': 0,
     'react/display-name': 0,
     'react/jsx-filename-extension': 0,
