@@ -9,12 +9,10 @@ if (Dimensions.get('window').height < 600) {
   store.dispatch(setIsSmallScreen());
 }
 
-const CivicApp = () => {
-  return (
-    <Provider store={store}>
-      <NavigationRoot />
-    </Provider>
-  );
-};
+const CivicApp = () => (
+  <Provider store={store}>
+    <NavigationRoot />
+  </Provider>
+);
 
 export default CivicApp;

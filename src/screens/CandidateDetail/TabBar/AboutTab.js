@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import Colors from '../../../styles/colors';
 
 // Components
 import SocialLinks from '../SocialLinks';
 
-const Biography = ({bioContent}) =>
+const Biography = ({ bioContent }) => (
   /**
    * Biography Section > About Tab > CandidateDetail
    * - prop  platformData - Array List of Objects with "id" & "content" keys
@@ -16,12 +16,11 @@ const Biography = ({bioContent}) =>
     <Text>{bioContent}</Text>
     <Text style={styles.readMoreText}>Read more</Text>
   </View>
+);
 
-Biography.propTypes = {
-  bioContent: PropTypes.string,
-};
+Biography.propTypes = { bioContent: PropTypes.string.isRequired };
 
-const Platform = ({platformList}) =>
+const Platform = ({ platformList }) => (
   /**
    * Platform Section > About Tab > CandidateDetail
    * - prop {array} platformList - Array List of Objects with "id" & "content" keys
@@ -30,48 +29,58 @@ const Platform = ({platformList}) =>
     <Text style={styles.heading}>Platform</Text>
     <FlatList
       data={platformList}
-      renderItem={({item})=><Text key={item.id}>• {item.content}</Text>}
-      keyExtractor={(item)=>item.id}
+      renderItem={({ item }) => (
+        <Text key={item.id}>
+•
+          {item.content}
+        </Text>
+      )}
+      keyExtractor={item => item.id}
     />
     <Text style={styles.readMoreText}>Read more</Text>
   </View>
+);
 
 Platform.propTypes = {
-  platformList: PropTypes.array,
+  platformList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      content: PropTypes.string,
+    }),
+  ).isRequired,
 };
 
-const AboutScreen = props =>
+const AboutScreen = props => (
   <View style={styles.container}>
     <Biography bioContent={props.bioContent} />
     <Platform platformList={props.platformList} />
-    <SocialLinks {...props.socials} size={28} color={Colors.lightBlue}/>
+    <SocialLinks {...props.socials} size={28} color={Colors.lightBlue} />
   </View>
+);
 
 AboutScreen.propTypes = {
-  bioContent: PropTypes.string,
-  platformList: PropTypes.array,
-  socials: PropTypes.object,
+  bioContent: PropTypes.string.isRequired,
+  platformList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  socials: PropTypes.shape(SocialLinks.propTypes).isRequired,
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
+  container: { flex: 1 },
   textContainer: {
     padding: 20,
-    borderBottomWidth:1,
-    borderColor: Colors.lightGray
+    borderBottomWidth: 1,
+    borderColor: Colors.lightGray,
   },
   heading: {
-    fontSize:18,
+    fontSize: 18,
     padding: 0,
-    fontWeight:'bold',
-    paddingBottom: 10
+    fontWeight: 'bold',
+    paddingBottom: 10,
   },
   readMoreText: {
     color: Colors.lightGray,
-    paddingTop: 10
-  }
+    paddingTop: 10,
+  },
 });
 
 export default AboutScreen;

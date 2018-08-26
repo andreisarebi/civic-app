@@ -1,72 +1,58 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Animated, View, TouchableHighlight, Text, StyleSheet } from 'react-native';
-import Color from '../../../styles/colors';
 import posed from 'react-native-pose';
+import Color from '../../../styles/colors';
 
-const tween = ({ value, toValue, useNativeDriver }) =>
-  Animated.timing(value, {
-    toValue,
-    useNativeDriver,
-    duration: 300
-  });
+const tween = ({ value, toValue, useNativeDriver }) => Animated.timing(value, {
+  toValue,
+  useNativeDriver,
+  duration: 300,
+});
 
 const config = {
   visible: { scaleX: 1, transition: tween },
-  hidden: { scaleX: 0, transition: () => false }
+  hidden: { scaleX: 0, transition: () => false },
 };
 
 const Line = posed.View(config);
 
-const TabItem = ({handlePress, name, selectedTab}) =>
+const TabItem = ({ handlePress, name, selectedTab }) => (
   <View style={styles.container}>
-    <TouchableHighlight
-      underlayColor={Color.white}
-      onPress={()=>handlePress(name)}
-      style={[
-        styles.tabItem
-      ]}
-    >
-      <Text
-        style={[
-          styles.tabText,
-          selectedTab===name && styles.activeText
-        ]}
-      >
-        {name}
-      </Text>
+    <TouchableHighlight underlayColor={Color.white} onPress={() => handlePress(name)} style={[styles.tabItem]}>
+      <Text style={[styles.tabText, selectedTab === name && styles.activeText]}>{name}</Text>
     </TouchableHighlight>
-    <Line
-      style={selectedTab===name ? styles.line : {}}
-      pose={selectedTab===name ? 'visible': 'hidden'}
-    />
+    <Line style={selectedTab === name ? styles.line : {}} pose={selectedTab === name ? 'visible' : 'hidden'} />
   </View>
+);
 
+TabItem.propTypes = {
+  handlePress: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  selectedTab: PropTypes.string.isRequired,
+};
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-  },
+  container: { flex: 1 },
   tabItem: {
-    flex:1,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Color.white
+    backgroundColor: Color.white,
   },
-  tabText:{
+  tabText: {
     color: Color.lightGray,
     fontSize: 18,
-    position: 'absolute'
+    position: 'absolute',
   },
-  activeText:{
-    color: Color.lightBlue
-  },
-  line:{
-    backgroundColor:Color.lightBlue,
+  activeText: { color: Color.lightBlue },
+  line: {
+    backgroundColor: Color.lightBlue,
     width: '100%',
     height: 2,
     position: 'absolute',
-    bottom: 0
-  }
+    bottom: 0,
+  },
 });
 
-export default TabItem
+export default TabItem;

@@ -3,9 +3,7 @@ import { View, Text } from 'react-native';
 import styles from './styles';
 
 class ActivismScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Activism',
-  };
+  static navigationOptions = { title: 'Activism' };
 
   render() {
     return (

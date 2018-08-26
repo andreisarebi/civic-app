@@ -25,9 +25,7 @@ class WelcomeCarousel extends React.Component {
     },
   ];
 
-  static propTypes = {
-    isSmallScreen: PropTypes.bool,
-  };
+  static propTypes = { isSmallScreen: PropTypes.bool.isRequired };
 
   constructor(props) {
     super(props);
@@ -53,13 +51,13 @@ class WelcomeCarousel extends React.Component {
           renderItem={this.renderItem}
           itemWidth={screenWidth}
           sliderWidth={screenWidth}
-          useScrollView={true}
+          useScrollView
           onSnapToItem={index => this.setState({ currentIndex: index })}
-          loop={true}
-          autoplay={true}
+          loop
+          autoplay
           autoplayDelay={300}
           autoplayInterval={5000}
-          lockScrollWhileSnapping={true}
+          lockScrollWhileSnapping
         />
         {!this.props.isSmallScreen && (
           <Pagination

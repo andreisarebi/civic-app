@@ -2,7 +2,7 @@ import { Category } from './models';
 
 // Selectors
 
-export const getUserFavorites = (state) => ({
+export const getUserFavorites = state => ({
   [Category.Candidates]: Array.from(getFavoritesForCategory(state, Category.Candidates)),
   [Category.Events]: Array.from(getFavoritesForCategory(state, Category.Events)),
 });
@@ -18,9 +18,7 @@ const getFavoritesForCategory = (state, category) => (
 export const FAVORITES_NAMESPACE = 'favorites';
 
 // Action Creators
-export const loadFavorites = () => ({
-  type: FavoritesActionType.Request,
-});
+export const loadFavorites = () => ({ type: FavoritesActionType.Request });
 
 export const favoritesRequestSuccess = favorites => ({
   type: FavoritesActionType.RequestSuccess,
@@ -38,7 +36,7 @@ export const addOrRemoveFavorite = (id, category, shouldAdd) => (
 
 const addFavorite = (id, category) => ({
   type: FavoritesActionType.Add,
-  payload: { id, category }
+  payload: { id, category },
 });
 
 const removeFavorite = (id, category) => ({

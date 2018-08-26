@@ -24,9 +24,7 @@ describe('UI reducer', () => {
 
   describe('selectors', () => {
     it('getIsSmallScreen returns isSmallScreen state', () => {
-      const state = {
-        [UI_NAMESPACE]: initialState,
-      };
+      const state = { [UI_NAMESPACE]: initialState };
       const isSmallScreen = getIsSmallScreen(state);
       expect(isSmallScreen).toBe(state[UI_NAMESPACE].isSmallScreen);
     });

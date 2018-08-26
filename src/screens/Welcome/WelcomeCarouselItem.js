@@ -3,27 +3,23 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, View } from 'react-native';
 import colors from '../../styles/colors';
 
-const WelcomeCarouselItem = props => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.badge}>{props.image}</View>
-      <Text style={styles.title}>{props.title}</Text>
-      {!props.isSmallScreen && <Text style={styles.subtitle}>{props.subtitle}</Text>}
-    </View>
-  );
-};
+const WelcomeCarouselItem = props => (
+  <View style={styles.container}>
+    <View style={styles.badge}>{props.image}</View>
+    <Text style={styles.title}>{props.title}</Text>
+    {!props.isSmallScreen && <Text style={styles.subtitle}>{props.subtitle}</Text>}
+  </View>
+);
 
 WelcomeCarouselItem.propTypes = {
-  image: PropTypes.object,
-  isSmallScreen: PropTypes.bool,
-  subtitle: PropTypes.string,
-  title: PropTypes.string,
+  image: PropTypes.element.isRequired,
+  isSmallScreen: PropTypes.bool.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-  },
+  container: { alignItems: 'center' },
   badge: {
     height: 250,
     width: 250,

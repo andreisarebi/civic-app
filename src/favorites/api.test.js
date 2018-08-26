@@ -10,9 +10,7 @@ it('favorites mapper', () => {
       [candidateId1]: true,
       [candidateId2]: true,
     },
-    events: {
-      [eventId]: true,
-    }
+    events: { [eventId]: true },
   };
   const expectedFavorites = {
     [Category.Candidates]: [candidateId1, candidateId2],

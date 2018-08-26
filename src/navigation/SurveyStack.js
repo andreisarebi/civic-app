@@ -4,9 +4,7 @@ import SurveyMainScreen from '../screens/Survey';
 import styles from './styles';
 
 const SurveyStack = createStackNavigator(
-  {
-    Main: SurveyMainScreen,
-  },
+  { Main: SurveyMainScreen },
   {
     navigationOptions: {
       title: 'Candidate Match Survey',

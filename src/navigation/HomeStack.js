@@ -4,9 +4,7 @@ import HomeScreen from '../screens/Home/HomeScreen';
 import styles from './styles';
 
 const HomeStack = createStackNavigator(
-  {
-    Home: HomeScreen,
-  },
+  { Home: HomeScreen },
   {
     navigationOptions: {
       headerStyle: styles.header,

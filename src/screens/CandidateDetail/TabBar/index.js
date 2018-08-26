@@ -7,13 +7,11 @@ import NewsTab from './NewsTab';
 import TabItem from './TabItem';
 
 class TabBar extends Component {
-  state = {
-    selectedTab: 'Match',
-  }
+  state = { selectedTab: 'Match' };
 
   // Replace with Redux Action
   renderSelectedView = () => {
-    switch(this.state.selectedTab){
+    switch (this.state.selectedTab) {
       case 'Match':
         return <MatchTab {...this.props.matchTab} />;
       case 'About':
@@ -23,46 +21,32 @@ class TabBar extends Component {
       default:
         return null;
     }
-  }
+  };
 
   handlePress = (selectedTab) => {
-    this.setState({selectedTab})
-  }
+    this.setState({ selectedTab });
+  };
 
-  render(){
+  render() {
     const { handlePress, renderSelectedView } = this;
     const { selectedTab } = this.state;
-    return(
+    return (
       <View style={styles.container}>
         <View style={styles.tabContainer}>
-          <TabItem
-            name='Match'
-            selectedTab={selectedTab}
-            handlePress={handlePress}
-          />
-          <TabItem
-            name='About'
-            selectedTab={selectedTab}
-            handlePress={handlePress}
-          />
-          <TabItem
-            name='News'
-            selectedTab={selectedTab}
-            handlePress={handlePress}
-          />
+          <TabItem name="Match" selectedTab={selectedTab} handlePress={handlePress} />
+          <TabItem name="About" selectedTab={selectedTab} handlePress={handlePress} />
+          <TabItem name="News" selectedTab={selectedTab} handlePress={handlePress} />
         </View>
-        <View styles={styles.viewArea}>
-          {renderSelectedView()}
-        </View>
+        <View styles={styles.viewArea}>{renderSelectedView()}</View>
       </View>
-    )
+    );
   }
 }
 
 TabBar.propTypes = {
-  matchTab: PropTypes.shape(MatchTab.proptypes),
-  aboutTab: PropTypes.shape(AboutTab.proptypes),
-  newsTab: PropTypes.shape(NewsTab.proptypes),
+  matchTab: PropTypes.shape(MatchTab.proptypes).isRequired,
+  aboutTab: PropTypes.shape(AboutTab.proptypes).isRequired,
+  newsTab: PropTypes.shape(NewsTab.proptypes).isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -73,8 +57,8 @@ const styles = StyleSheet.create({
   tabContainer: {
     height: 70,
     flexDirection: 'row',
-    justifyContent: 'space-between'
-  }
+    justifyContent: 'space-between',
+  },
 });
 
 export default TabBar;

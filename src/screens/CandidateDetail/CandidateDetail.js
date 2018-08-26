@@ -7,54 +7,68 @@ import { Category } from '../../favorites/models';
 
 const CandidateDetail = props => (
   <View style={styles.container}>
-    {props.summary
-      ? <CandidatePreview
+    {props.summary ? (
+      <CandidatePreview
         {...props.summary}
         onToggleFavorite={() => props.toggleFavorite(props.candidateId, Category.Candidates)}
       />
-      : <Text>Loading...</Text>
-    }
+    ) : (
+      <Text>Loading...</Text>
+    )}
   </View>
 );
 
-const CandidatePreview = props => {
-  return(
-    <View style={styles.previewContainer}>
-      <View style={styles.container}>
-        <Avatar xlarge rounded source={{ uri: props.imageURI }} />
-        <Text style={styles.nameText}>{props.name}</Text>
-        <Text style={styles.positionsText}>Running for {props.positions[0]}</Text>
-        <Text>
-          <Text style={styles.matchText}>{props.matchPercent}% </Text>
-          match | {props.partyPreference}
-        </Text>
-      </View>
-      <Favorite
-        isFavorite={props.isFavorite}
-        onToggleFavorite={props.onToggleFavorite}
-      />
-    </View>
-  )
-};
-
-CandidatePreview.propTypes = {
-  name: PropTypes.string,
-  imageURI: PropTypes.string,
-  isFavorite: PropTypes.bool,
-  matchPercent: PropTypes.number,
-  partyPreference: PropTypes.string,
-  positions: PropTypes.array,
-  onToggleFavorite: PropTypes.func,
-};
-
 CandidateDetail.propTypes = {
-  summary: PropTypes.shape(CandidatePreview.proptypes),
-  toggleFavorite: PropTypes.func,
-  positions: PropTypes.array,
+  summary: PropTypes.shapeOf(CandidatePreview.propTypes).isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
+  positions: PropTypes.arrayOf(PropTypes.string),
   candidateId: PropTypes.string,
   partyPreference: PropTypes.string,
-  matchPercent: PropTypes.number
+  matchPercent: PropTypes.number,
 };
+
+CandidateDetail.defaultProps = {
+  positions: undefined,
+  candidateId: undefined,
+  partyPreference: undefined,
+  matchPercent: undefined,
+};
+
+const CandidatePreview = props => (
+  <View style={styles.previewContainer}>
+    <View style={styles.container}>
+      <Avatar xlarge rounded source={{ uri: props.imageURI }} />
+      <Text style={styles.nameText}>{props.name}</Text>
+      <Text style={styles.positionsText}>
+Running for
+        {props.positions[0]}
+      </Text>
+      <Text>
+        <Text style={styles.matchText}>
+          {props.matchPercent}
+%
+          {' '}
+        </Text>
+          match |
+        {' '}
+        {props.partyPreference}
+      </Text>
+    </View>
+    <Favorite isFavorite={props.isFavorite} onToggleFavorite={props.onToggleFavorite} />
+  </View>
+);
+
+CandidatePreview.propTypes = {
+  name: PropTypes.string.isRequired,
+  imageURI: PropTypes.string.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  matchPercent: PropTypes.number.isRequired,
+  partyPreference: PropTypes.string.isRequired,
+  positions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onToggleFavorite: PropTypes.func.isRequired,
+};
+
+
 const Favorite = props => (
   <View style={styles.favoriteContainer}>
     <Icon
@@ -67,8 +81,8 @@ const Favorite = props => (
 );
 
 Favorite.propTypes = {
-  isFavorite: PropTypes.bool,
-  onToggleFavorite: PropTypes.func,
+  isFavorite: PropTypes.bool.isRequired,
+  onToggleFavorite: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -84,9 +98,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  favorite: {
-    color: Colors.orange
-  },
+  favorite: { color: Colors.orange },
   favoriteContainer: {
     position: 'absolute',
     right: 10,
@@ -95,18 +107,18 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 21,
     paddingTop: 5,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   positionsText: {
     color: Colors.lightGray,
     paddingTop: 5,
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   matchText: {
     color: Colors.lightBlue,
     fontSize: 18,
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 });
 
 export default CandidateDetail;

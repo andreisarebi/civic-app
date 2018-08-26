@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
 
-import CredentialInputScreen from '../screens/Auth/CredentialInputScreen';
+import CredentialInputScreen from '../screens/Auth/CredentialInputScreenContainer';
 import WelcomeScreen from '../screens/Welcome/WelcomeScreen';
 
 const AuthStack = createStackNavigator(
@@ -10,9 +10,7 @@ const AuthStack = createStackNavigator(
   },
   {
     initialRouteName: 'Welcome',
-    navigationOptions: {
-      header: null,
-    },
+    navigationOptions: { header: null },
   },
 );
 

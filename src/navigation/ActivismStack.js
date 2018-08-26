@@ -4,9 +4,7 @@ import ActivismScreen from '../screens/ActivismScreen';
 import styles from './styles';
 
 const ActivismStack = createStackNavigator(
-  {
-    Activism: ActivismScreen,
-  },
+  { Activism: ActivismScreen },
   {
     navigationOptions: {
       headerStyle: styles.header,

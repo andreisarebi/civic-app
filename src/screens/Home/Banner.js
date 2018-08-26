@@ -4,37 +4,39 @@ import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import colors from '../../styles/colors';
 
-export const mapAlertLevelToColor = level => {
+export const mapAlertLevelToColor = (level) => {
   switch (level) {
     case 'high':
       return colors.red;
     case 'medium':
       return colors.darkBlue;
+    default:
+      return colors.darkBlue;
   }
 };
 
-const Banner = props => {
-  return (
-    <View style={[styles.container, props.style, { backgroundColor: props.color }]}>
-      <TouchableHighlight onPress={props.onPress}>
-        <View>
-          <Text style={styles.title}>{props.title}</Text>
-          <Text style={styles.subtitle}>{props.subtitle}</Text>
-          <Entypo name={props.icon} color={colors.white} size={60} style={styles.icon} />
-        </View>
-      </TouchableHighlight>
-    </View>
-  );
-};
+const Banner = props => (
+  <View style={[styles.container, props.style, { backgroundColor: props.color }]}>
+    <TouchableHighlight onPress={props.onPress}>
+      <View>
+        <Text style={styles.title}>{props.title}</Text>
+        <Text style={styles.subtitle}>{props.subtitle}</Text>
+        <Entypo name={props.icon} color={colors.white} size={60} style={styles.icon} />
+      </View>
+    </TouchableHighlight>
+  </View>
+);
 
 Banner.propTypes = {
-  color: PropTypes.string,
-  icon: PropTypes.string,
-  title: PropTypes.string,
-  style: PropTypes.any,
-  subtitle: PropTypes.string,
+  color: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  style: View.propTypes.style.isRequired,
+  subtitle: PropTypes.string.isRequired,
   onPress: PropTypes.func,
 };
+
+Banner.defaultProps = { onPress: undefined };
 
 const styles = StyleSheet.create({
   container: {

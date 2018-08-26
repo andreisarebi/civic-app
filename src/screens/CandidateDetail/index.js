@@ -7,16 +7,13 @@ import { toggleFavorite } from '../../favorites/redux';
 import TabBar from './TabBar';
 import { getCandidateSummary, getTabBarProps } from './viewSelectors';
 
-
 class CandidatesScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Candidates',
-  };
+  static navigationOptions = { title: 'Candidates' };
+
   static propTypes = propTypes;
+
   render() {
-    return (
-      <ScreenContainer candidateId={this.props.navigation.state.params.id} />
-    );
+    return <ScreenContainer candidateId={this.props.navigation.state.params.id} />;
   }
 }
 
@@ -24,14 +21,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-  }
+  },
 });
 
-const propTypes = {
-  navigation: PropTypes.objectOf({
-    id: PropTypes.string,
-  }),
-};
+const propTypes = { navigation: PropTypes.shape({ state: { params: { id: PropTypes.string } } }).isRequired };
 
 const ScreenView = props => (
   <ScrollView style={styles.container}>
@@ -41,8 +34,8 @@ const ScreenView = props => (
 );
 
 ScreenView.propTypes = {
-  summary: PropTypes.shape(CandidateDetail.proptypes),
-  tabBar: PropTypes.shape(TabBar.propTypes),
+  summary: PropTypes.shape(CandidateDetail.proptypes).isRequired,
+  tabBar: PropTypes.shape(TabBar.propTypes).isRequired,
 };
 
 const ScreenContainer = connect(
@@ -53,6 +46,4 @@ const ScreenContainer = connect(
   { toggleFavorite },
 )(ScreenView);
 
-export default CandidatesScreen
-
-
+export default CandidatesScreen;
