@@ -1,45 +1,26 @@
-import React from 'react'
-import { applyMiddleware, createStore, compose } from 'redux'
-import { Provider } from 'react-redux'
-import createSagaMiddleware from 'redux-saga'
-import { StyleSheet, Text, View } from 'react-native'
-import Placeholder from '../src/welcome/WelcomeContainer'
-import appReducer from './appReducer';
-import appSaga from './appSagas';
+// Uncomment to Get Rid of Annoying Yellow Box Dialogs in Android Studio. They are caused by a bug related to Firebase timers.
 
-/*eslint-disable */
-const composeSetup = process.env.NODE_ENV !== 'production' && typeof window === 'object' &&
-window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose
-/*eslint-enable */
+// console.ignoredYellowBox = [
+// 'Setting a timer'
+// ];
 
-const sagaMiddleware = createSagaMiddleware()
+import React from 'react';
+import { Provider } from 'react-redux';
+import { Dimensions } from 'react-native';
+import NavigationRoot from './NavigationRoot';
+import store from './configureStore';
+import { setIsSmallScreen } from '../src/UI/redux';
 
-const store = createStore(
-  appReducer,
-  composeSetup(applyMiddleware(sagaMiddleware)), // allows redux devtools to watch sagas
-)
+if (Dimensions.get('window').height < 600) {
+  store.dispatch(setIsSmallScreen());
+}
 
-sagaMiddleware.run(appSaga)
+const CivicApp = () => {
+  return (
+    <Provider store={store}>
+      <NavigationRoot />
+    </Provider>
+  );
+};
 
-const App = () => (
-  // console.log('store', store) ||
-  <Provider store={store}>
-    <View style={styles.container}>
-      <Placeholder />
-      <Text>Changes you make will automatically reload.</Text>
-      <Text>Shake your phone to open the developer menu.</Text>
-    </View>
-  </Provider>
-)
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
-
-export default App
+export default CivicApp;
