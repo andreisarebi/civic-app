@@ -5,10 +5,9 @@ import { View, Button } from 'react-native';
 import styles from '../styles';
 
 class SurveyMainScreen extends React.Component {
-  static propTypes = propTypes;
   goToApp = () => this.props.navigation.navigate('App');
   goToDistrictMatch = () => this.props.navigation.navigate('DistrictMatch');
-
+  
   render() {
     return (
       <View style={styles.container}>
@@ -19,7 +18,7 @@ class SurveyMainScreen extends React.Component {
   }
 }
 
-const propTypes = {
+SurveyMainScreen.propTypes = {
   navigation: PropTypes.objectOf({
     navigate: PropTypes.func,
     push: PropTypes.func,
