@@ -6,7 +6,6 @@ import DistrictMatch from './DistrictMatch';
 import styles from '../styles';
 
 class DistrictMatchScreen extends Component {
-  static propTypes = propTypes;
   render() {
     return (
       <View style={styles.container}>
@@ -16,7 +15,7 @@ class DistrictMatchScreen extends Component {
   }
 }
 
-const propTypes = {
+DistrictMatchScreen.propTypes = {
   navigation: PropTypes.objectOf({
     navigate: PropTypes.func,
     push: PropTypes.func,
