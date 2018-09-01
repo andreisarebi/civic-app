@@ -5,11 +5,10 @@ export default async function(){
   try {
     const result = await fetch(url);
     const resultJson = await result.json();
-    console.log(resultJson);
     if(!resultJson.error){
       if(!resultJson.offices){
         if(this.state.view==='ADDRESS_NEEDED'){
-          this.setState({view: 'WE_FAILED'}, ()=>{
+          this.setState({view: 'DISTRICT_NOT_FOUND'}, ()=>{
             this.setState({isLoading: false});
           })
         }else{
@@ -29,12 +28,11 @@ export default async function(){
     }
   } catch(error){
     if(this.state.view==='ADDRESS_NEEDED'){
-      this.setState({view: 'WE_FAILED'}, ()=>{
+      this.setState({view: 'DISTRICT_NOT_FOUND'}, ()=>{
         this.setState({isLoading: false});
       })
     }else{
       this.setState({isLoading: false, error:`Hmm that doesn't look right! Please check for any errors.`});
-      console.log('ERROR CAUGHT: ', error);
     }
   }
 }

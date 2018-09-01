@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Button } from 'react-native';
-import DistrictMatch from './DistrictMatch';
 
 import styles from '../styles';
 
 class SurveyMainScreen extends React.Component {
   static propTypes = propTypes;
   goToApp = () => this.props.navigation.navigate('App');
+  goToDistrictMatch = () => this.props.navigation.navigate('DistrictMatch');
 
   render() {
     return (
       <View style={styles.container}>
-        <DistrictMatch navigate={this.props.navigation.navigate}/>
+        <Button title="Go to District Match" onPress={this.goToDistrictMatch}/>
         <Button title="Go to App" onPress={this.goToApp} />
       </View>
     );
