@@ -5,7 +5,7 @@ import styles from './styles';
 
 const SurveyStack = createStackNavigator(
   {
-    Main: SurveyMainScreen
+    Main: SurveyMainScreen,
   },
   {
     navigationOptions: {
