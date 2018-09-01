@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import { View, Button } from 'react-native';
 import DistrictMatch from './DistrictMatch';
 
@@ -14,12 +13,5 @@ class DistrictMatchScreen extends Component {
     );
   }
 }
-
-DistrictMatchScreen.propTypes = {
-  navigation: PropTypes.objectOf({
-    navigate: PropTypes.func,
-    push: PropTypes.func,
-  }),
-};
 
 export default DistrictMatchScreen;
