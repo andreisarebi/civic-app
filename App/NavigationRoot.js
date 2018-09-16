@@ -19,7 +19,7 @@ const NavigationRoot = createSwitchNavigator(
     DistrictMatch: DistrictMatchStack
   },
   {
-    initialRouteName: 'Auth',
+    initialRouteName: 'App',
   },
 );
 

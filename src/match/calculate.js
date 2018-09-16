@@ -21,7 +21,7 @@ const calculatePositionsGap = (userPositions, candidatePositions) => (
 );
 
 export const calculateGapForSingle = (user, candidate) => {
-  if (user === 0) {
+  if (isUserNeutral(user)) {
     return [0, 0];
   } else if (isAgreement(user, candidate)) {
     return [0, 4];
@@ -32,13 +32,15 @@ export const calculateGapForSingle = (user, candidate) => {
   }
 };
 
-const isAgreement = (user, candidate) => (
+export const isAgreement = (user, candidate) => (
   (candidate > 0 && user > 0)
   || (candidate < 0 && user < 0)
 );
 
-const getPositionResponse = (id, positions) => (
-  positions[id] && positions[id].response
+export const isUserNeutral = user => user === 0;
+
+export const getPositionResponse = (id, positions) => (
+  positions && positions[id] && positions[id].response
 );
 
 const hasUserAndCandidateScores = (userScore, candidateScore) =>

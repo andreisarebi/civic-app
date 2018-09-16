@@ -7,12 +7,22 @@ const SURVEY_NAMESPACE = 'survey';
 const POSITIONS_NAMESPACE = 'userPositions';
 
 export const getSurveyQuestions = (state) => (
-  Object.values(state[MATCH_NAMESPACE][SURVEY_NAMESPACE])
+  state[MATCH_NAMESPACE][SURVEY_NAMESPACE]
 );
 
 export const getUserPositions = (state) => (
   state[MATCH_NAMESPACE][POSITIONS_NAMESPACE]
 );
+
+// Action Creators
+export const loadSurveySuccess = surveyQuestions => ({
+  type: MatchActionType.SurveyRequestSuccess,
+  payload: surveyQuestions,
+});
+
+export const loadSurvey = () => ({
+  type: MatchActionType.SurveyRequest,
+});
 
 export const MatchActionType = {
   SurveyRequest: 'civicApp/match/survey/REQUEST',
@@ -21,7 +31,7 @@ export const MatchActionType = {
 };
 
 // Reducers
-const surveyReducer = (state = {}, action) => {
+const surveyReducer = (state = null, action) => {
   switch (action.type) {
     case MatchActionType.SurveyRequestSuccess:
       return {
