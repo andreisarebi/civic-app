@@ -3,7 +3,7 @@ import { getDataFromGoogleSpreadsheet } from '../googleDriveApi/getData';
 
 const surveyQuestionsDriveId = '1Kh36D5DOyO8_it63OD-o51b2F4rlKfeLwnCbnaQZ5XE';
 
-const fetchSurveyQuestions = () => (
+export const fetchSurveyQuestions = () => (
   getDataFromGoogleSpreadsheet(surveyQuestionsDriveId)
 );
 
