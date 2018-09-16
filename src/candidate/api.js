@@ -42,14 +42,20 @@ const addDefaults = (defaults, candidate) => (
 );
 
 const toCandidatePositions = (apiPositions, transformKeysFromGoogle) => (
-  apiPositions.reduce((transformed, apiPosition) => {
-    const position = transformKeysFromGoogle(apiPosition);
-    return {
-      ...transformed,
-      [position.candidateId]: {
-        ...(transformed[position.candidateId] || {}),
-        [position.questionId] : position,
-      },
-    };
-  })
+  apiPositions.reduce(
+    (transformed, apiPosition) => {
+      const posWithString = transformKeysFromGoogle(apiPosition);
+      const position = {
+        ...posWithString,
+        response: parseInt(posWithString.response, 10)
+      };
+      return {
+        ...transformed,
+        [position.candidateId]: {
+          ...(transformed[position.candidateId] || {}),
+          [position.questionId] : position,
+        },
+      };
+    },
+    {})
 );

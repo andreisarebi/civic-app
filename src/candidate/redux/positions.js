@@ -4,7 +4,7 @@ import { CandidateActionType } from './candidates';
 export const getPositionsForCandidate = (state, candidateId) =>
   state[POSITIONS_NAMESPACE][candidateId];
 
-export const POSITIONS_NAMESPACE = 'positions';
+export const POSITIONS_NAMESPACE = 'candidatePositions';
 
 // Reducer
 const reducer = (state = initialState, action) => {
