@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Share } from 'react-native';
 import { Button } from 'react-native-elements'
 import PropTypes from 'prop-types';
 import Colors from '../../../styles/colors';
@@ -19,6 +19,17 @@ const MatchCard = props =>
       containerViewStyle={styles.buttonView}
       textStyle={styles.buttonText}
       fontWeight="bold"
+      onPress={()=>{
+        const url = "https://www.getcivicapp.com/";
+        Share.share({
+          message: `I'm a ${props.matchPercent} with ${'candidate name placeholder'}! Checkout the civic app at ${url}.`,
+          url: url,
+          title: "Civic App"
+        },
+        {
+          dialogTitle: "Civic App"
+        })
+      }}
     />
   </View>
 
