@@ -7,9 +7,7 @@ const config = {
   projectId: process.env.REACT_APP_PROJECT_ID ,
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET ,
   messagingSenderId: process.env.REACT_APP_MESSAGEING_SENDER_ID,
-
 };
-
 const app = firebase.initializeApp(config);
 
 export const auth = firebase.auth(app);

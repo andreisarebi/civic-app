@@ -4,7 +4,6 @@ import {createStackNavigator} from 'react-navigation';
 import SurveyStart from './SurveyStart';
 import Question from './redux/containers/Container_Question';
 
-
 var RootStack = createStackNavigator(
   {
     Home: {screen: SurveyStart},
