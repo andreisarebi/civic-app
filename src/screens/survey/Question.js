@@ -2,7 +2,8 @@ import React from 'react';
 import { Text, View, Button,StyleSheet,TouchableWithoutFeedback,TouchableHighlight,TouchableOpacity, Image, BackHandler} from 'react-native';
 import {createStackNavigator} from 'react-navigation';
 import Checkbox from './checkbox';
-import { StackActions, NavigationActions } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
+import { StackActions } from 'react-navigation';
 import * as questions from './lib/questions.json';
 import * as UserResponse from './lib/userResponses.json'
 
@@ -11,80 +12,66 @@ class Question extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      UserResponse: UserResponse.default,
-      questionStatus: this.props.questionStatus,
-      index: this.props.screenProps[0]
+      response: UserResponse.default,
+      test: 'nothing'
     }
     this.nextScreen = this.nextScreen.bind(this);
     this.changeUserResponseField = this.changeUserResponseField.bind(this);
   }
 
-  // Sends specific question to All responses made by user
-   sendUserResponse(){
-     this.props.screenProps[2](this.state.index,this.state.UserResponse)
-   }
-
-   // Changes the index by an x amount
-   indexAdd(increment){
-     this.props.screenProps[1](increment)
-   }
-
-   sendQuestionsToFirebase(){
-     this.props.screenProps[3]();
-   }
-
    handleBackPress = () => {
      return true;
    }
 
-  changeUserResponseField(field,value){
-    this.setState(prevState=> ({
-      UserResponse: {
-        ...prevState.UserResponse,
-        [field]: value
-      }
-    }))
+  changeUserResponseField(field,value,callback){
+    if(callback === null){
+      this.setState({...this.state, response: {...this.state.response, [field]: value}});
+    } else {
+      this.setState({...this.state, response: {...this.state.response, [field]: value}}, callback);
+    }
   }
 
   nextScreen = () => {
-      this.props.loadQuestionStatus(this.state.index,this.state.UserResponse.questionResponse)
-      this.sendUserResponse();
-      if(this.state.index < 10){
-        this.indexAdd(1);
-        var questionnum = "Question" + this.state.index;
-        this.props.navigation.navigate(questionnum, this.state.index);
-      } else if (this.state.index == 10){
-        this.sendQuestionsToFirebase();
-      }
+    this.props.loadQuestionResponse(this.state.response.questionNum,this.state.response.questionResponse);
+    this.props.increaseIndex();
+    this.props.setMaxIndex();
+    if(this.props.index < this.props.totalNumQuestions){
+      this.props.navigation.dispatch(StackActions.push({routeName:'Question', params: {}}))
+    }
+    if(this.props.index === this.props.totalNumQuestions){
+      // Go to next section
+      this.props.writeResponsesToDatabase();
+      this.setState({test: 'should have been ok'})
+    }
   }
 
   componentDidMount() {
-    this.changeUserResponseField("questionNum", questions["question" + this.state.index].id)
-    // If the question Status for this question exists
-    if(this.props.questionStatus['question'+ this.state.index] != null){
-      this.changeUserResponseField("questionResponse", this.props.questionStatus['question'+this.state.index].response)
+    //Set total number of questions from the json file
+    if(this.props.totalNumQuestions == null){
+      this.props.updateTotalQuestions(Object.keys(questions.default).length);
     }
+    // Set question number to current response
+    this.changeUserResponseField("questionNum", questions["question"+this.props.index].id)
+    // If the question exists in the set of responses, set the current response to it
+    if(typeof this.props.questionResponses[this.props.index-1] !== 'undefined'){
+      this.changeUserResponseField("questionResponse", this.props.questionResponses[this.props.index-1].questionResponse)
+    }
+    
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
   }
 
-  componentWillReceiveProps(nextProps) {
-    // Updates the index after indexAdd has been used to change the value in the parent component
-    if (nextProps.screenProps !== this.state.screenProps) {
-      this.setState({ index: nextProps.screenProps[0] });
-    }
-  }
+
 
   componentWillUnmount() {
+    //Remove BackHandler
      BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-     if(this.state.index > 1){
-       this.indexAdd(-1);
-     }
+     this.props.decreaseIndex();
    }
-
 
   render(){
 
-    let questionObject = questions["question" + this.state.index];
+    let questionObject = questions["question"+this.props.index];
+    let arrayNum = this.props.index -1;
 
     return (
       <View style={styles.survey_block} elevation={5}>
@@ -93,15 +80,21 @@ class Question extends React.Component {
           <Text style={[styles.font_style, styles.title] }> {questionObject.qtext} </Text>
         </View>
 
-        <Image source={{uri: questionObject.pic? questionObject.pic : null }} style={{width: 334, height: 187}} />
 
-        <Checkbox changeUserResponseField={this.changeUserResponseField} index={this.state.index} questionStatus={this.state.questionStatus} nextScreen={this.nextScreen}/>
+        <Image source={{uri: questionObject.pic ? questionObject.pic : null }} style={{width: 334, height: 187}} />
+
+        <Checkbox changeUserResponseField={this.changeUserResponseField} questionResponses={this.props.questionResponses}
+          index={this.props.index} nextScreen={this.nextScreen} />
 
         <View style={{width: 283, flexDirection: 'row',justifyContent: 'space-between'}}>
           <Text style={styles.option_text}>Strongly{'\n'}Disagree</Text>
           <Text style={styles.option_text}>No{'\n'}opinion</Text>
           <Text style={styles.option_text}>Strongly{'\n'}Agree</Text>
         </View>
+
+        <Text>{this.state.test}</Text>
+        <Text> Calling function: {this.state.test}</Text>
+        <Text> Sent: {this.props.writeStatus}</Text>
 
       </View>
     )

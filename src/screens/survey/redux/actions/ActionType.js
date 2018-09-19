@@ -1,2 +1,14 @@
-export const LOAD_RESPONSE = 'LOAD_RESPONSE'
-export const CHECK_RESPONSE = 'CHECK_RESPONSE'
+export const LOAD_QUESTION_RESPONSE = 'LOAD_QUESTION_RESPONSE'
+export const UPDATE_TOTAL_QUESTIONS = 'UPDATE_TOTAL_QUESTIONS'
+
+export const INCREASE_INDEX = 'INCREASE_INDEX'
+export const DECREASE_INDEX = 'DECREASE_INDEX'
+export const SET_MAX_INDEX = 'SET_MAX_INDEX'
+
+// This is for the saga selected
+export const WRITE_TO_DATABASE = 'civicApp/auth/writeToDatabase'
+
+export const WRITE_SUCCESS = 'WRITE_SUCCESS'
+export const WRITE_FAILURE = 'WRITE_FAILURE'
+
+export const STORE_QUESTION_KEY = 'STORE_QUESTION_KEY'

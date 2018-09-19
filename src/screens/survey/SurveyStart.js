@@ -1,45 +1,35 @@
 import React from 'react';
-import {createStackNavigator,createDrawerNavigator, NavigationActions, createMaterialTopTabNavigator,BackHandler} from 'react-navigation';
 import { Text, View, Button, StyleSheet, TouchableWithoutFeedback, Image} from 'react-native';
+import { StackActions } from 'react-navigation';
 
-class SurveyStart extends React.Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-    }
-  }
+function SurveyStart(props) {
+  return (
+    <View style={styles.survey_block} elevation={5}>
 
-  render() {
-
-    return (
-      <View style={styles.survey_block} elevation={5}>
-
-        <View style={styles.block1}>
-          <Text style={[styles.font_style, styles.title] }>We'll ask a few questions {"\n"}to get to know the issues {"\n"}you care about.</Text>
-        </View>
-        <View style={styles.block2}>
-          <Text style={[styles.font_style]}>This will take 3 minutes and will {"\n"}help us find candidates and organizations that represent you.</Text>
-        </View>
-
-        <View style= {styles.image_block}>
-          <Image
-              style={styles.image}
-              source={require('./lib/noun_1696115_cc.png')}
-            />
-        </View>
-
-        <View >
-          <TouchableWithoutFeedback
-            onPressIn = {() => {this.props.navigation.navigate('Question1', {index: 1});}} >
-          <View style={styles.get_started_button}><Text style={styles.get_started_text}>GET STARTED</Text></View>
-          </TouchableWithoutFeedback>
-        </View>
-
+      <View style={styles.block1}>
+        <Text style={[styles.font_style, styles.title] }>We'll ask a few questions {"\n"}to get to know the issues {"\n"}you care about.</Text>
       </View>
-    )
-  }
+      <View style={styles.block2}>
+        <Text style={[styles.font_style]}>This will take 3 minutes and will {"\n"}help us find candidates and organizations that represent you.</Text>
+      </View>
 
+      <View style= {styles.image_block}>
+        <Image
+            style={styles.image}
+            source={require('./lib/noun_1696115_cc.png')}
+          />
+      </View>
+
+      <View >
+        <TouchableWithoutFeedback
+          onPressIn = {() => {props.navigation.dispatch(StackActions.push({routeName:'Question', params: {}}));}} >
+        <View style={styles.get_started_button}><Text style={styles.get_started_text}>GET STARTED</Text></View>
+        </TouchableWithoutFeedback>
+      </View>
+
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({

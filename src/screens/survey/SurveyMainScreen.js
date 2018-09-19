@@ -1,24 +1,15 @@
 import React from 'react';
-import { Text, View, Button,StyleSheet,TouchableWithoutFeedback, Image, Easing , Animated} from 'react-native';
+import { Text, View, StyleSheet} from 'react-native';
 import {createStackNavigator} from 'react-navigation';
 import CardStackStyleInterpolator from 'react-navigation'
 import SurveyStart from './SurveyStart';
 import Question from './redux/containers/Container_Question'
-import {database} from '../../firebase/initialize'
+
 
 var RootStack = createStackNavigator(
   {
     Home: {screen: SurveyStart},
-    Question1: {screen: Question},
-    Question2: {screen: Question},
-    Question3: {screen: Question},
-    Question4: {screen: Question},
-    Question5: {screen: Question},
-    Question6: {screen: Question},
-    Question7: {screen: Question},
-    Question8: {screen: Question},
-    Question9: {screen: Question},
-    Question10: {screen: Question}
+    Question: {screen: Question},
   },
   {
     cardStyle : {
@@ -62,45 +53,9 @@ var RootStack = createStackNavigator(
      super(props);
      this.state = {
        user: 'Jose',
-       userResponses: {},
-       keySetResponses: [],
-       index : 1
+       keySetResponses: []
      }
-     this.indexAdd = this.indexAdd.bind(this);
-     this.addResponse = this.addResponse.bind(this);
-     this.sendQuestionsToFirebase = this.sendQuestionsToFirebase.bind(this);
    }
-
-   indexAdd(increment){
-     let newIndex = this.state.index + increment;
-     if(this.state.index < 10) {
-      this.setState({index: newIndex});
-    } else if( this.state.index === 10){
-      if(increment < 0){
-        this.setState({index: newIndex});
-      }
-    }
-   }
-
-   addResponse(index,value){
-     let sentence = "question"+index;
-     this.setState(prevState=> ({
-       userResponses: {
-         ...prevState.userResponses,
-         [sentence]: value
-       }}))
-   }
-
-   sendQuestionsToFirebase(){
-     let itemsRef = database.ref('/questions')
-     Object.keys(this.state.userResponses).map((question) => {
-       var action = itemsRef.push(this.state.userResponses[question]);
-       this.setState(prevState => ({
-        keySetResponses: [...prevState.keySetResponses, action.key]
-       }))
-     })
-   }
-
 
   render() {
 
@@ -113,11 +68,9 @@ var RootStack = createStackNavigator(
 
         <View style={styles.container}>
           <View style={[styles.survey_block]}>
-            {/* Sent index and functions as screenProps */}
-            <RootStack screenProps={[this.state.index,this.indexAdd,this.addResponse,this.sendQuestionsToFirebase]}/>
+            <RootStack />
           </View>
-          <Text>{this.state.index}/10</Text>
-
+          <Text>{this.props.totalNumQuestions == null ? null : this.props.index + '/10'}</Text>
       </View>
     </View>
 

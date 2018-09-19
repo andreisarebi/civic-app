@@ -21,9 +21,10 @@ class checkbox extends React.Component {
   }
 
   componentDidMount(){
-    // Sets check to the Option previously selected
-    if(this.props.questionStatus['question'+this.props.index] != null){
-      this.toggleSelection(this.state.responseList[this.props.questionStatus['question'+this.props.index].response])
+    // Checks if the Question Response exists and then toggles to that response
+    let arrayIndex = this.props.index-1;
+    if(this.props.questionResponses[arrayIndex] != null){
+      this.toggleSelection(this.state.responseList[this.props.questionResponses[arrayIndex].questionResponse])
     }
   }
 
@@ -42,11 +43,8 @@ class checkbox extends React.Component {
 
   startNewResponse(currentSelection, response){
     this.toggleSelection(currentSelection);
-    this.props.changeUserResponseField("questionResponse", response);
-    // There's a small delay that might be possible to fix with promises
-    setTimeout(() => this.props.nextScreen(), 5);
+    this.props.changeUserResponseField("questionResponse", response , this.props.nextScreen);
   }
-
 
   render(){
     return(

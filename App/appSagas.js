@@ -1,12 +1,10 @@
 import { all } from 'redux-saga/effects';
 import authSaga from '../src/auth/sagas';
+import surveySaga from '../src/screens/Survey/sagas'
 import electionsScreenSaga from '../src/screens/Elections/sagas';
 
-const appSaga = function*() {
-  yield all([
-    authSaga(),
-    electionsScreenSaga(),
-  ]);
-};
+function* appSaga() {
+  yield all([authSaga(), electionsScreenSaga(),surveySaga()]);
+}
 
 export default appSaga;

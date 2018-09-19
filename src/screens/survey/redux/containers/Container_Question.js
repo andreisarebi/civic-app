@@ -1,15 +1,22 @@
 import {connect} from 'react-redux';
 import Question from '../../Question';
-import {loadQuestionStatus} from '../actions/Actions_question';
+import {writeResponsesToDatabase,loadQuestionResponse,updateTotalQuestions,increaseIndex,decreaseIndex,setMaxIndex, SURVEY_NAMESPACE} from '../actions/Actions_question';
 
 function mapStateToProps(state){
   return {
-    questionStatus : state.questionStatus
+    questionResponses : state[SURVEY_NAMESPACE].questionResponses,
+    index : state[SURVEY_NAMESPACE].index,
+    totalNumQuestions: state[SURVEY_NAMESPACE].totalNumQuestions
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  loadQuestionStatus: (index,response) => dispatch(loadQuestionStatus(index,response))
+  loadQuestionResponse: (questionnum,response) => dispatch(loadQuestionResponse(questionnum,response)),
+  increaseIndex: () => dispatch(increaseIndex()),
+  decreaseIndex: () => dispatch(decreaseIndex()),
+  setMaxIndex: () => dispatch(setMaxIndex()),
+  updateTotalQuestions: (newNumQuestions) => dispatch(updateTotalQuestions(newNumQuestions)),
+  writeResponsesToDatabase: () => dispatch(writeResponsesToDatabase())
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(Question);
