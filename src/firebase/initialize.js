@@ -7,7 +7,6 @@ const config = {
   projectId: process.env.REACT_APP_PROJECT_ID || 'civic-app-ac266',
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET || 'civic-app-ac266.appspot.com',
   messagingSenderId: process.env.REACT_APP_MESSAGEING_SENDER_ID || '506898842953',
-
 };
 
 const app = firebase.initializeApp(config);
