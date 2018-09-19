@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
-import SurveyMainScreen from './../../SurveyMainScreen';
-import {SURVEY_NAMESPACE} from './../actions/Actions_question';
-import {loadSurvey} from './../../../../match/redux'
+import SurveyMainScreen from '../../SurveyMainScreen';
+import {SURVEY_NAMESPACE} from '../actions/Actions_question';
+import {loadSurvey} from '../../../../match/redux';
 
 function mapStateToProps(state){
   return {
