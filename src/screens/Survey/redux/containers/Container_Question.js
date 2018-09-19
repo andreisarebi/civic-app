@@ -13,6 +13,7 @@ function mapStateToProps(state){
   }
 }
 
+
 const mapDispatchToProps = dispatch => ({
   loadQuestionResponse: (questionnum,response) => dispatch(loadQuestionResponse(questionnum,response)),
   increaseIndex: () => dispatch(increaseIndex()),
