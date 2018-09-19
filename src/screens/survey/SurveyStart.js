@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, View, StyleSheet, TouchableWithoutFeedback, Image} from 'react-native';
 import { StackActions } from 'react-navigation';
 
-
 function SurveyStart(props) {
   return (
     <View style={styles.survey_block} elevation={5}>
