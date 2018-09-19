@@ -5,6 +5,7 @@ const initialState = {
   maxIndex: 1,
   totalNumQuestions: null,
   questionResponses : [],
+  questionKeys: [],
   databaseArgs: {
     writeStatus: null,
     errorType: null
@@ -16,7 +17,7 @@ const SurveyReducer = (state = initialState, action) => {
     let newIndex;
     switch(action.type){
       case actionType.LOAD_QUESTION_RESPONSE: {
-        let currentResponse = {questionId: action.questionnum, response: action.response}
+        let currentResponse = {questionId: action.questionId, response: action.response}
         return newState = {
           ...state,
           questionResponses: [
@@ -60,6 +61,15 @@ const SurveyReducer = (state = initialState, action) => {
             ...state,
             maxIndex : state.index + 1
           }
+        }
+      }
+      case actionType.ADD_KEY_TO_SET: {
+        return newState = {
+          ...state,
+          questionKeys: [
+            ...state.questionKeys,
+            action.key
+          ]
         }
       }
       case actionType.WRITE_SUCCESS: {

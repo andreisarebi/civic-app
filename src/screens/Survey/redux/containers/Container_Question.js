@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import Question from '../../Question';
-import {writeResponsesToDatabase,loadQuestionResponse,updateTotalQuestions,increaseIndex,decreaseIndex,setMaxIndex, SURVEY_NAMESPACE} from '../actions/Actions_question';
+import {writeResponsesToDatabase,loadQuestionResponse,updateTotalQuestions,addKeyToSet,increaseIndex,decreaseIndex,setMaxIndex, SURVEY_NAMESPACE} from '../actions/Actions_question';
 import {getSurveyQuestions} from '../../../../match/redux'
 
 function mapStateToProps(state){
@@ -8,6 +8,7 @@ function mapStateToProps(state){
     questionResponses : state[SURVEY_NAMESPACE].questionResponses,
     index : state[SURVEY_NAMESPACE].index,
     totalNumQuestions: state[SURVEY_NAMESPACE].totalNumQuestions,
+    questionKeys: state[SURVEY_NAMESPACE].questionKeys,
     databaseArgs: state[SURVEY_NAMESPACE].databaseArgs,
     surveyQuestions: getSurveyQuestions(state)
   }
@@ -21,6 +22,7 @@ const mapDispatchToProps = dispatch => ({
   setMaxIndex: () => dispatch(setMaxIndex()),
   updateTotalQuestions: (newNumQuestions) => dispatch(updateTotalQuestions(newNumQuestions)),
   writeResponsesToDatabase: () => dispatch(writeResponsesToDatabase()),
+  addKeyToSet: (key) => dispatch(addKeyToSet(key))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(Question);

@@ -1,7 +1,8 @@
 import { setByPath } from '../firebase/initialize';
 import { getDataFromGoogleSpreadsheet } from '../googleDriveApi/getData';
 
-const surveyQuestionsDriveId = process.env.REACT_NATIVE_SURVEY_QUESTIONS_DRIVE_ID;
+//const surveyQuestionsDriveId = process.env.REACT_NATIVE_SURVEY_QUESTIONS_DRIVE_ID;
+const surveyQuestionsDriveId = '1Kh36D5DOyO8_it63OD-o51b2F4rlKfeLwnCbnaQZ5XE';
 
 export const fetchSurveyQuestions = () => getDataFromGoogleSpreadsheet(surveyQuestionsDriveId);
 

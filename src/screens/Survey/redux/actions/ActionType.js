@@ -8,6 +8,7 @@ export const SET_MAX_INDEX = 'SET_MAX_INDEX'
 // This is for the saga selected
 export const WRITE_TO_DATABASE = 'civicApp/auth/writeToDatabase'
 
+export const ADD_KEY_TO_SET = 'ADD_KEY_TO_SET'
 
 export const WRITE_SUCCESS = 'WRITE_SUCCESS'
 export const WRITE_FAILURE = 'WRITE_FAILURE'

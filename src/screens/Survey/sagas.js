@@ -5,15 +5,17 @@ import * as actionType from './redux/actions/ActionType';
 import {AUTH_NAMESPACE} from '../../auth/redux';
 
 const getarrayOfObjects = state => state[SURVEY_NAMESPACE].questionResponses;
+const getarrayOfKeys = state => state[SURVEY_NAMESPACE].questionKeys;
 const getuser = state => state[AUTH_NAMESPACE].user;
 
 export function* writeToDatabaseSaga() {
   try{
     let arrayOfObjects = yield select(getarrayOfObjects);
-    let user = yield select(getuser)
+    let user = yield select(getuser);
+    let arrayOfKeys = yield select(getarrayOfKeys);
     let refToDatabasePath = yield call(selectUserReference,"users",user.id,"responses");
     yield* arrayOfObjects.map(function* (item,index) {
-      yield call(writeResponsesToUserRef,refToDatabasePath,index,item)
+      yield call(writeResponsesToUserRef,refToDatabasePath,arrayOfKeys[index],item)
     })
 
     yield put(writeSuccess())

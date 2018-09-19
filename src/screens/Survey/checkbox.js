@@ -45,7 +45,7 @@ class checkbox extends React.Component {
 
   startNewResponse(currentSelection, response){
     this.toggleSelection(currentSelection);
-    this.props.changeUserResponseField("questionResponse", response , this.props.nextScreen);
+    this.props.changeUserResponseField("response", response , this.props.nextScreen);
   }
 
   render(){

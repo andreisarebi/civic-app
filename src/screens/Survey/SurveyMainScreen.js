@@ -55,6 +55,12 @@ var RootStack = createStackNavigator(
     this.props.loadSurvey();
    }
 
+   componentDidUpdate(){
+     Object.keys(this.props.surveyQuestions).map((item,index)=>{
+       this.props.addKeyToSet(item)
+     })
+   }
+
   render() {
 
     return (

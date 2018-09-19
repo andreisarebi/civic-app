@@ -29,8 +29,9 @@ class Question extends React.Component {
     }
   }
 
+
   nextScreen = () => {
-    this.props.loadQuestionResponse(this.state.response.questionNum,this.state.response.questionResponse);
+    this.props.loadQuestionResponse(this.state.response.questionId,this.state.response.response);
     this.props.increaseIndex();
     this.props.setMaxIndex();
     if(this.props.index < this.props.totalNumQuestions){
@@ -45,17 +46,15 @@ class Question extends React.Component {
 
   componentDidMount() {
 
-    //console.log(this.props.surveyQuestions)
-
     //Set total number of questions from the json file
     if(this.props.totalNumQuestions == null){
-      this.props.updateTotalQuestions(Object.keys(questions.default).length);
+      this.props.updateTotalQuestions(Object.keys(this.props.surveyQuestions).length);
     }
     // Set question number to current response
-    this.changeUserResponseField("questionNum", questions["question"+this.props.index].id)
+    this.changeUserResponseField("questionId", this.props.surveyQuestions[this.props.questionKeys[this.props.index-1]].id)
     // If the question exists in the set of responses, set the current response to it
     if(typeof this.props.questionResponses[this.props.index-1] !== 'undefined'){
-      this.changeUserResponseField("questionResponse", this.props.questionResponses[this.props.index-1].questionResponse)
+      this.changeUserResponseField("response", this.props.questionResponses[this.props.index-1].questionResponse)
     }
 
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
@@ -70,16 +69,16 @@ class Question extends React.Component {
 
   render(){
 
-    let questionObject = questions["question"+this.props.index];
+    let questionObject = this.props.surveyQuestions[this.props.questionKeys[this.props.index-1]];
 
     return (
       <View style={styles.survey_block} elevation={5}>
 
         <View style={styles.block1}>
-          <Text style={[styles.font_style, styles.title] }> {questionObject.qtext} </Text>
+          <Text style={[styles.font_style, styles.title] }> {questionObject.text} </Text>
         </View>
 
-        <Image source={{uri: questionObject.pic ? questionObject.pic : null }} style={{width: 334, height: 187}} />
+        <Image source={{uri: questionObject.image ? questionObject.image : null }} style={{width: 334, height: 187}} />
 
         <Checkbox changeUserResponseField={this.changeUserResponseField} questionResponses={this.props.questionResponses}
           index={this.props.index} nextScreen={this.nextScreen} />
