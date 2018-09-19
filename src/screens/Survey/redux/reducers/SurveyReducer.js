@@ -7,8 +7,7 @@ const initialState = {
   questionResponses : [],
   databaseArgs: {
     writeStatus: null,
-    path: 'questions',
-    keyArray: []
+    errorType: null
   }
 }
 
@@ -17,7 +16,7 @@ const SurveyReducer = (state = initialState, action) => {
     let newIndex;
     switch(action.type){
       case actionType.LOAD_QUESTION_RESPONSE: {
-        let currentResponse = {questionNum: action.questionnum,questionResponse: action.response}
+        let currentResponse = {questionId: action.questionnum, response: action.response}
         return newState = {
           ...state,
           questionResponses: [
@@ -68,7 +67,8 @@ const SurveyReducer = (state = initialState, action) => {
           ...state,
           databaseArgs:{
             ...state.databaseArgs,
-            writeStatus: 'success'
+            writeStatus: 'sucess',
+            errorType: {}
           }
         }
       }
@@ -77,22 +77,8 @@ const SurveyReducer = (state = initialState, action) => {
           ...state,
           databaseArgs: {
             ...state.databaseArgs,
-            writeStatus: {
-              default: 'failure',
-              errorType: action.error
-            }
-          }
-        }
-      }
-      case actionType.STORE_QUESTION_KEY: {
-        return newState = {
-          ...state,
-          databaseArgs: {
-            ...state.databaseArgs,
-            keyArray: [
-              ...state.databaseArgs.keyArray,
-              action.key
-            ]
+            writeStatus: 'failure',
+            errorType: action.error
           }
         }
       }

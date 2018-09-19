@@ -1,11 +1,10 @@
 import React from 'react';
-import { Text, View, Button,StyleSheet,TouchableWithoutFeedback,TouchableHighlight,TouchableOpacity, Image, BackHandler} from 'react-native';
-import {createStackNavigator} from 'react-navigation';
+import { Text, View, StyleSheet, Image, BackHandler} from 'react-native';
 import Checkbox from './checkbox';
-import { NavigationActions } from 'react-navigation';
 import { StackActions } from 'react-navigation';
 import * as questions from './lib/questions.json';
 import * as UserResponse from './lib/userResponses.json'
+
 
 class Question extends React.Component {
 
@@ -13,7 +12,6 @@ class Question extends React.Component {
     super(props);
     this.state = {
       response: UserResponse.default,
-      test: 'nothing'
     }
     this.nextScreen = this.nextScreen.bind(this);
     this.changeUserResponseField = this.changeUserResponseField.bind(this);
@@ -41,11 +39,15 @@ class Question extends React.Component {
     if(this.props.index === this.props.totalNumQuestions){
       // Go to next section
       this.props.writeResponsesToDatabase();
-      this.setState({test: 'should have been ok'})
+      this.props.screenProps.rootNav.navigate('DistrictMatch')
     }
   }
 
+
   componentDidMount() {
+
+    //console.log(this.props.surveyQuestions)
+
     //Set total number of questions from the json file
     if(this.props.totalNumQuestions == null){
       this.props.updateTotalQuestions(Object.keys(questions.default).length);
@@ -56,11 +58,10 @@ class Question extends React.Component {
     if(typeof this.props.questionResponses[this.props.index-1] !== 'undefined'){
       this.changeUserResponseField("questionResponse", this.props.questionResponses[this.props.index-1].questionResponse)
     }
-    
+
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+
   }
-
-
 
   componentWillUnmount() {
     //Remove BackHandler
@@ -71,7 +72,6 @@ class Question extends React.Component {
   render(){
 
     let questionObject = questions["question"+this.props.index];
-    let arrayNum = this.props.index -1;
 
     return (
       <View style={styles.survey_block} elevation={5}>
@@ -79,7 +79,6 @@ class Question extends React.Component {
         <View style={styles.block1}>
           <Text style={[styles.font_style, styles.title] }> {questionObject.qtext} </Text>
         </View>
-
 
         <Image source={{uri: questionObject.pic ? questionObject.pic : null }} style={{width: 334, height: 187}} />
 
@@ -91,10 +90,6 @@ class Question extends React.Component {
           <Text style={styles.option_text}>No{'\n'}opinion</Text>
           <Text style={styles.option_text}>Strongly{'\n'}Agree</Text>
         </View>
-
-        <Text>{this.state.test}</Text>
-        <Text> Calling function: {this.state.test}</Text>
-        <Text> Sent: {this.props.writeStatus}</Text>
 
       </View>
     )

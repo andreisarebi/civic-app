@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Button, StyleSheet, TouchableWithoutFeedback, Image} from 'react-native';
+import { Text, View, StyleSheet, TouchableWithoutFeedback, Image} from 'react-native';
 import { StackActions } from 'react-navigation';
 
 

@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
  * getting into an infinite redirect because the user never appears to be logged in
  * even if they are.
  */
-const WithAuthentication = authAction => (WrappedComponent) => {
+const WithAuthentication = authAction => WrappedComponent => {
   return class extends React.Component {
     static propTypes = {
       isLoggedIn: PropTypes.bool.isRequired,
@@ -39,7 +39,7 @@ const WithAuthentication = authAction => (WrappedComponent) => {
 
     handleLogin = () => {
       if (this.props.isLoggedIn) {
-        this.props.navigation.navigate('App');
+        this.props.navigation.navigate('Survey');
         // TODO: navigate to Survey if user hasn't taken it yet
       }
     };

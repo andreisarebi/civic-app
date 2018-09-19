@@ -39,8 +39,3 @@ export const writeFailure = (errorMessage) => ({
   type: actionType.WRITE_SUCCESS,
   error: errorMessage
 })
-
-export const storeQuestionKey = (questionKey) => ({
-  type: actionType.STORE_QUESTION_KEY,
-  key: questionKey
-})

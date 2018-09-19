@@ -1,9 +1,8 @@
 import React from 'react';
-import { Text, View, StyleSheet} from 'react-native';
+import { Text, View, StyleSheet, Button} from 'react-native';
 import {createStackNavigator} from 'react-navigation';
-import CardStackStyleInterpolator from 'react-navigation'
 import SurveyStart from './SurveyStart';
-import Question from './redux/containers/Container_Question'
+import Question from './redux/containers/Container_Question';
 
 
 var RootStack = createStackNavigator(
@@ -51,10 +50,10 @@ var RootStack = createStackNavigator(
 
    constructor(props){
      super(props);
-     this.state = {
-       user: 'Jose',
-       keySetResponses: []
-     }
+   }
+
+  componentDidMount() {
+    this.props.loadSurvey();
    }
 
   render() {
@@ -68,10 +67,11 @@ var RootStack = createStackNavigator(
 
         <View style={styles.container}>
           <View style={[styles.survey_block]}>
-            <RootStack />
+            <RootStack screenProps={{rootNav: this.props.rootnav}}/>
           </View>
           <Text>{this.props.totalNumQuestions == null ? null : this.props.index + '/10'}</Text>
-      </View>
+
+        </View>
     </View>
 
 

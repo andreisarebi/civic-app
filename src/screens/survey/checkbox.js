@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, Button,StyleSheet,TouchableHighlight,TouchableOpacity, Image, BackHandler} from 'react-native';
+import PropTypes from 'prop-types';
 
 class checkbox extends React.Component {
 
@@ -75,6 +76,16 @@ class checkbox extends React.Component {
         </View>
     )
   }
+}
+
+checkbox.propTypes = {
+  optionalFunc: PropTypes.func,
+  optionalObject: PropTypes.shape({
+    questionId: PropTypes.string,
+    response: PropTypes.number
+  }),
+  optionalNumber: PropTypes.number,
+  optionalFunc: PropTypes.func
 }
 
 const styles = StyleSheet.create({

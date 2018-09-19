@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import SurveyMainScreen from '../../SurveyMainScreen';
 import {SURVEY_NAMESPACE} from '../actions/Actions_question';
+import {loadSurvey} from '../../../../match/redux'
 
 function mapStateToProps(state){
   return {
@@ -10,4 +11,8 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps)(SurveyMainScreen);
+const mapDispatchToProps = dispatch => ({
+  loadSurvey: () => dispatch(loadSurvey()),
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(SurveyMainScreen);
