@@ -22,7 +22,6 @@ export function* writeToDatabaseSaga() {
     yield put(writeFailure(error))
   }
 
-
 }
 
 function* surveySaga() {

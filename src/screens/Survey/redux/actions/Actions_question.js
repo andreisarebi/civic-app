@@ -20,6 +20,7 @@ export const setMaxIndex = () => ({
   type: actionType.SET_MAX_INDEX
 })
 
+
 export const updateTotalQuestions = (newNumQuestions) => ({
   type: actionType.UPDATE_TOTAL_QUESTIONS,
   payload: newNumQuestions

@@ -21,6 +21,7 @@ class checkbox extends React.Component {
       this.startNewResponse = this.startNewResponse.bind(this)
   }
 
+
   componentDidMount(){
     // Checks if the Question Response exists and then toggles to that response
     let arrayIndex = this.props.index-1;
