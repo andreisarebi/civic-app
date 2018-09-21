@@ -7,14 +7,7 @@ class checkbox extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      responseList : ["stronglyDisagree","disagree","noOpinion","agree","stronglyAgree"],
-      responseOption : {
-        stronglyDisagree : false,
-        disagree: false,
-        noOpinion: false,
-        agree: false,
-        stronglyAgree: false
-      },
+        responseOption: [false,false,false,false,false],
         previousResponse: null
       }
       this.toggleSelection = this.toggleSelection.bind(this)
@@ -26,7 +19,7 @@ class checkbox extends React.Component {
     // Checks if the Question Response exists and then toggles to that response
     let arrayIndex = this.props.index-1;
     if(this.props.questionResponses[arrayIndex] != null){
-      this.toggleSelection(this.state.responseList[this.props.questionResponses[arrayIndex].questionResponse])
+      this.toggleSelection(this.props.questionResponses[arrayIndex].response);
     }
   }
 
@@ -43,8 +36,8 @@ class checkbox extends React.Component {
     this.setState({previousResponse: currentResponse});
   }
 
-  startNewResponse(currentSelection, response){
-    this.toggleSelection(currentSelection);
+  startNewResponse(response){
+    this.toggleSelection(response);
     this.props.changeUserResponseField("response", response , this.props.nextScreen);
   }
 
@@ -53,24 +46,24 @@ class checkbox extends React.Component {
       <View style= {styles.option_box}>
         <View style={styles.line}></View>
          <View style={styles.circles_bar}>
-            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse('stronglyDisagree', 0)}>
-              <View>{this.state.responseOption['stronglyDisagree'] && <View style={styles.inner_circle}></View> }
+            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse(0)}>
+              <View>{this.state.responseOption[0] && <View style={styles.inner_circle}></View> }
               </View>
             </TouchableHighlight>
-            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse('disagree', 1)}>
-              <View>{this.state.responseOption['disagree'] && <View style={styles.inner_circle}></View> }
+            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse(1)}>
+              <View>{this.state.responseOption[1] && <View style={styles.inner_circle}></View> }
               </View>
             </TouchableHighlight>
-            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse('noOpinion', 2)}>
-              <View>{this.state.responseOption['noOpinion'] && <View style={styles.inner_circle}></View> }
+            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse(2)}>
+              <View>{this.state.responseOption[2] && <View style={styles.inner_circle}></View> }
               </View>
             </TouchableHighlight>
-            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse('agree', 3)}>
-              <View>{this.state.responseOption['agree'] && <View style={styles.inner_circle}></View> }
+            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse(3)}>
+              <View>{this.state.responseOption[3] && <View style={styles.inner_circle}></View> }
               </View>
             </TouchableHighlight>
-            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() =>  this.startNewResponse('stronglyAgree',4)}>
-              <View>{this.state.responseOption['stronglyAgree'] && <View style={styles.inner_circle}></View> }
+            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() =>  this.startNewResponse(4)}>
+              <View>{this.state.responseOption[4] && <View style={styles.inner_circle}></View> }
               </View>
             </TouchableHighlight>
           </View>
