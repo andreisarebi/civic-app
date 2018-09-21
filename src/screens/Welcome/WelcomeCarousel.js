@@ -11,17 +11,17 @@ class WelcomeCarousel extends React.Component {
     {
       image: <CandidatesImage />,
       title: 'Learn About Candidates',
-      subtitle: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+      subtitle: 'Learn where candidates stand on the issues',
     },
     {
       image: <StayInformedImage />,
       title: 'Stay Informed',
-      subtitle: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+      subtitle: 'Stay informed about news that matters to you',
     },
     {
       image: <GetInvolvedImage />,
       title: 'Get Involved',
-      subtitle: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+      subtitle: 'Make an impact for causes you care about',
     },
   ];
 
