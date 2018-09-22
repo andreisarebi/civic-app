@@ -17,9 +17,8 @@ class checkbox extends React.Component {
 
   componentDidMount(){
     // Checks if the Question Response exists and then toggles to that response
-    let arrayIndex = this.props.index-1;
-    if(this.props.questionResponses[arrayIndex] != null){
-      this.toggleSelection(this.props.questionResponses[arrayIndex].response);
+    if(this.props.questionResponses[this.props.questionIndex] != null){
+      this.toggleSelection(this.props.questionResponses[this.props.questionIndex].response);
     }
   }
 

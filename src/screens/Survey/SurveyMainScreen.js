@@ -4,7 +4,7 @@ import {createStackNavigator} from 'react-navigation';
 import SurveyStart from './SurveyStart';
 import Question from './redux/containers/Container_Question';
 
-var RootStack = createStackNavigator(
+var QuestionStack = createStackNavigator(
   {
     Home: {screen: SurveyStart},
     Question: {screen: Question},
@@ -59,7 +59,9 @@ var RootStack = createStackNavigator(
      Object.keys(this.props.surveyQuestions).map((item,index)=>{
        this.props.addKeyToSet(item)
      })
-   }
+  }
+
+  static router = QuestionStack.router;
 
   render() {
 
@@ -72,13 +74,11 @@ var RootStack = createStackNavigator(
 
         <View style={styles.container}>
           <View style={[styles.survey_block]}>
-            <RootStack screenProps={{rootNav: this.props.rootnav}}/>
+            <QuestionStack navigation={this.props.navigation} />
           </View>
           <Text>{this.props.totalNumQuestions == null ? null : this.props.index + '/10'}</Text>
-
         </View>
     </View>
-
 
     );
   }

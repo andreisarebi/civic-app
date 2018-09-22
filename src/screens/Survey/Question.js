@@ -2,9 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, BackHandler} from 'react-native';
 import Checkbox from './checkbox';
 import { StackActions } from 'react-navigation';
-import * as questions from './lib/questions.json';
-import * as UserResponse from './lib/userResponses.json'
-
+import * as UserResponse from './lib/userResponses.json';
 
 class Question extends React.Component {
 
@@ -20,6 +18,7 @@ class Question extends React.Component {
    handleBackPress = () => {
      return true;
    }
+
 
   changeUserResponseField(field,value,callback){
     if(callback === null){
@@ -40,16 +39,13 @@ class Question extends React.Component {
     if(this.props.index === this.props.totalNumQuestions){
       // Go to next section
       this.props.writeResponsesToDatabase();
-      this.props.screenProps.rootNav.navigate('DistrictMatch')
+      this.props.navigation.navigate('DistrictMatch')
     }
   }
 
   componentDidMount() {
-
-    //Set total number of questions from the json file
-    if(this.props.totalNumQuestions == null){
-      this.props.updateTotalQuestions(Object.keys(this.props.surveyQuestions).length);
-    }
+    //Set total number of questions from the spreadsheet
+    this.props.setNumSurveyQuestions(this.props.surveyQuestions);
     // Set question number to current response
     this.changeUserResponseField("questionId", this.props.surveyQuestions[this.props.questionKeys[this.props.index-1]].id)
     // If the question exists in the set of responses, set the current response to it
@@ -65,12 +61,15 @@ class Question extends React.Component {
     //Remove BackHandler
      BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
      this.props.decreaseIndex();
+     if(this.props.index === 1){
+       this.props.setNumSurveyQuestions(null)
+     }
    }
 
   render(){
 
-    let questionObject = this.props.surveyQuestions[this.props.questionKeys[this.props.index-1]];
-
+    let questionIndex = this.props.questionKeys[this.props.index-1];
+    let questionObject = this.props.surveyQuestions[questionIndex];
     return (
       <View style={styles.survey_block} elevation={5}>
 
@@ -81,7 +80,7 @@ class Question extends React.Component {
         <Image source={{uri: questionObject.image ? questionObject.image : null }} style={{width: 334, height: 187}} />
 
         <Checkbox changeUserResponseField={this.changeUserResponseField} questionResponses={this.props.questionResponses}
-          index={this.props.index} nextScreen={this.nextScreen} />
+          questionIndex={questionIndex} nextScreen={this.nextScreen} />
 
         <View style={{width: 283, flexDirection: 'row',justifyContent: 'space-between'}}>
           <Text style={styles.option_text}>Strongly{'\n'}Disagree</Text>

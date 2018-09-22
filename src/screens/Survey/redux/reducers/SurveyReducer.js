@@ -1,10 +1,11 @@
 import * as actionType from '../actions/ActionType';
+import {getSurveySize} from '../../../../match/redux'
 
 const initialState = {
   index: 1,
   maxIndex: 1,
   totalNumQuestions: null,
-  questionResponses : [],
+  questionResponses : {},
   questionKeys: [],
   databaseArgs: {
     writeStatus: null,
@@ -13,18 +14,18 @@ const initialState = {
 }
 
 const SurveyReducer = (state = initialState, action) => {
-    let newState;
     let newIndex;
     switch(action.type){
       case actionType.LOAD_QUESTION_RESPONSE: {
-        let currentResponse = {questionId: action.questionId, response: action.response}
-        return newState = {
+        return {
           ...state,
-          questionResponses: [
-            ...state.questionResponses.slice(0,state.index-1),
-            currentResponse,
-            ...state.questionResponses.slice(state.index,state.maxIndex+1)
-          ]
+          questionResponses : {
+            ...state.questionResponses,
+            [action.questionId]: {
+              questionId : action.questionId,
+              response: action.response
+            }
+          }
         }
       }
       case actionType.INCREASE_INDEX: {
@@ -33,7 +34,7 @@ const SurveyReducer = (state = initialState, action) => {
         } else if(state.index === state.totalNumQuestions){
           newIndex = state.index
         }
-        return newState = {
+        return {
           ...state,
           index : newIndex
         }
@@ -44,27 +45,21 @@ const SurveyReducer = (state = initialState, action) => {
         } else {
           newIndex = state.index
         }
-        return newState = {
+        return {
           ...state,
           index: newIndex
         }
       }
-      case actionType.UPDATE_TOTAL_QUESTIONS: {
-        return newState = {
-          ...state,
-          totalNumQuestions: action.payload
-        }
-      }
       case actionType.SET_MAX_INDEX: {
         if(state.index > state.maxIndex){
-          return newState = {
+          return {
             ...state,
             maxIndex : state.index + 1
           }
         }
       }
       case actionType.ADD_KEY_TO_SET: {
-        return newState = {
+        return {
           ...state,
           questionKeys: [
             ...state.questionKeys,
@@ -72,8 +67,20 @@ const SurveyReducer = (state = initialState, action) => {
           ]
         }
       }
+      case actionType.SET_NUM_SURVEY_QUESTIONS: {
+        if(action.survey === null){
+          return {
+            ...state,
+            totalNumQuestions: null
+          }
+        }
+        return {
+          ...state,
+          totalNumQuestions: Object.keys(action.survey).length
+        }
+      }
       case actionType.WRITE_SUCCESS: {
-        return newState = {
+        return {
           ...state,
           databaseArgs:{
             ...state.databaseArgs,
@@ -83,7 +90,7 @@ const SurveyReducer = (state = initialState, action) => {
         }
       }
       case actionType.WRITE_FAILURE: {
-        return newState = {
+        return {
           ...state,
           databaseArgs: {
             ...state.databaseArgs,

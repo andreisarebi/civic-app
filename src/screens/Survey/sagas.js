@@ -1,29 +1,24 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import {selectUserReference, writeResponsesToUserRef} from './lib/api'
-import {storeQuestionKey, writeSuccess, writeFailure, SURVEY_NAMESPACE} from './redux/actions/Actions_question'
+import {getQuestionResponses,getQuestionKeys} from './redux/actions/Selectors'
+import {writeSuccess,writeFailure} from './redux/actions/Actions_question'
 import * as actionType from './redux/actions/ActionType';
-import {AUTH_NAMESPACE} from '../../auth/redux';
-
-const getarrayOfObjects = state => state[SURVEY_NAMESPACE].questionResponses;
-const getarrayOfKeys = state => state[SURVEY_NAMESPACE].questionKeys;
-const getuser = state => state[AUTH_NAMESPACE].user;
+import {getLoggedInUser} from '../../auth/selectors';
 
 export function* writeToDatabaseSaga() {
   try{
-    let arrayOfObjects = yield select(getarrayOfObjects);
-    let user = yield select(getuser);
-    let arrayOfKeys = yield select(getarrayOfKeys);
+    let arrayOfObjects = yield select(getQuestionResponses);
+    let user = yield select(getLoggedInUser);
+    let arrayOfKeys = yield select(getQuestionKeys);
     let refToDatabasePath = yield call(selectUserReference,"users",user.id,"responses");
-    yield* arrayOfObjects.map(function* (item,index) {
-      yield call(writeResponsesToUserRef,refToDatabasePath,arrayOfKeys[index],item)
+    yield* arrayOfKeys.map(function* (item) {
+      yield call(writeResponsesToUserRef,refToDatabasePath,item,arrayOfObjects[item])
     })
-
     yield put(writeSuccess())
   } catch(error){
     console.log(error)
     yield put(writeFailure(error))
   }
-
 }
 
 function* surveySaga() {

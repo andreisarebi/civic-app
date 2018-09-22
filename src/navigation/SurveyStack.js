@@ -7,7 +7,7 @@ import styles from './styles';
 const SurveyStack = createStackNavigator(
   {
     Main: {
-      screen: (props) => <SurveyMainScreen {...props} rootnav={props.navigation}/>
+      screen: SurveyMainScreen
     },
   },
   {

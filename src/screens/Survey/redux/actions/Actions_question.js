@@ -1,5 +1,6 @@
 import * as actionType from './ActionType';
-export const SURVEY_NAMESPACE = 'Survey'
+export const SURVEY_NAMESPACE = 'survey'
+
 
 // Survey Questions Actions
 export const loadQuestionResponse = (questionid,response) => ({
@@ -25,9 +26,9 @@ export const addKeyToSet = (key) => ({
   key: key
 })
 
-export const updateTotalQuestions = (newNumQuestions) => ({
-  type: actionType.UPDATE_TOTAL_QUESTIONS,
-  payload: newNumQuestions
+export const setNumSurveyQuestions = (surveyObject) => ({
+  type: actionType.SET_NUM_SURVEY_QUESTIONS,
+  survey: surveyObject
 })
 
 // Send to Database actions
