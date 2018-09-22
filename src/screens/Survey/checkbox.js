@@ -45,23 +45,23 @@ class checkbox extends React.Component {
       <View style= {styles.option_box}>
         <View style={styles.line}></View>
          <View style={styles.circles_bar}>
-            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse(0)}>
+            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse(-2)}>
               <View>{this.state.responseOption[0] && <View style={styles.inner_circle}></View> }
               </View>
             </TouchableHighlight>
-            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse(1)}>
+            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse(-1)}>
               <View>{this.state.responseOption[1] && <View style={styles.inner_circle}></View> }
               </View>
             </TouchableHighlight>
-            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse(2)}>
+            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse(0)}>
               <View>{this.state.responseOption[2] && <View style={styles.inner_circle}></View> }
               </View>
             </TouchableHighlight>
-            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse(3)}>
+            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() => this.startNewResponse(1)}>
               <View>{this.state.responseOption[3] && <View style={styles.inner_circle}></View> }
               </View>
             </TouchableHighlight>
-            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() =>  this.startNewResponse(4)}>
+            <TouchableHighlight style= {styles.outer_circle} underlayColor="white" onPress = {() =>  this.startNewResponse(2)}>
               <View>{this.state.responseOption[4] && <View style={styles.inner_circle}></View> }
               </View>
             </TouchableHighlight>

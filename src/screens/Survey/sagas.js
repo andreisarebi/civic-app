@@ -16,7 +16,6 @@ export function* writeToDatabaseSaga() {
     })
     yield put(writeSuccess())
   } catch(error){
-    console.log(error)
     yield put(writeFailure(error))
   }
 }

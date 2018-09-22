@@ -21,7 +21,7 @@ function mapStateToProps(state){
 const mapDispatchToProps = dispatch => ({
   addKeyToSet: (key) => dispatch(addKeyToSet(key)),
   loadSurvey: () => dispatch(loadSurvey()),
-  setNumSurveyQuestions: (surveyObject) => dispatch(setNumSurveyQuestions(surveyObject))
-})
+  setNumSurveyQuestions: (surveyObject) => dispatch(setNumSurveyQuestions(surveyObject)),
+});
 
 export default connect(mapStateToProps,mapDispatchToProps)(SurveyMainScreen);
