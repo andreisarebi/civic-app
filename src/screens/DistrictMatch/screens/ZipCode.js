@@ -8,7 +8,6 @@ const zipCodeImage = require('../../../assets/images/district-match-zip.png');
 const ZipCode = ({styles, zipcode, error, handleChange, submit}) => {
   return(
     <Fragment>
-      <ButtonSubmit onPress={submit}/>
       <Text style={styles.header}>Just one more thing</Text>
       <Image style={styles.image} source={zipCodeImage}/>
       <Text style={styles.bodyText}>We need your zip code to find your district.</Text>
@@ -29,6 +28,7 @@ const ZipCode = ({styles, zipcode, error, handleChange, submit}) => {
             <Text style={styles.errorText}>{error && error}</Text>
           </View>
         }
+        <ButtonSubmit onPress={submit}/>
       </View>
     </Fragment>
   )
