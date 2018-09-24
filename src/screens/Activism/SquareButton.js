@@ -1,3 +1,10 @@
+/**
+ * This component is not being used at the moment
+ * But once the Activism screen has more options
+ * this should match the original UI mockup so I'm
+ * leaving it in for now...
+ */
+
 import React from 'react';
 import { TouchableHighlight, Text, StyleSheet, View } from 'react-native';
 import { Icon } from 'react-native-elements';

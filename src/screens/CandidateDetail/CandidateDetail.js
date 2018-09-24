@@ -7,18 +7,19 @@ import { Category } from '../../favorites/models';
 
 const CandidateDetail = props => (
   <View style={styles.container}>
-    {props.summary
-      ? <CandidatePreview
+    {props.summary ? (
+      <CandidatePreview
         {...props.summary}
-        onToggleFavorite={() => props.toggleFavorite(props.candidateId, Category.Candidates)}
+        onToggleFavorite={() => props.toggleFavorite(props.summary.id, Category.Candidates)}
       />
-      : <Text>Loading...</Text>
-    }
+    ) : (
+      <Text>Loading...</Text>
+    )}
   </View>
 );
 
 const CandidatePreview = props => {
-  return(
+  return (
     <View style={styles.previewContainer}>
       <View style={styles.container}>
         <Avatar xlarge rounded source={{ uri: props.imageURI }} />
@@ -34,7 +35,23 @@ const CandidatePreview = props => {
         onToggleFavorite={props.onToggleFavorite}
       />
     </View>
-  )
+  );
+};
+
+CandidateDetail.propTypes = {
+  summary: PropTypes.shape(CandidatePreview.propTypes).isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
+  positions: PropTypes.arrayOf(PropTypes.string),
+  candidateId: PropTypes.string,
+  partyPreference: PropTypes.string,
+  matchPercent: PropTypes.number,
+};
+
+CandidateDetail.defaultProps = {
+  positions: undefined,
+  candidateId: undefined,
+  partyPreference: undefined,
+  matchPercent: undefined,
 };
 
 CandidatePreview.propTypes = {
@@ -53,7 +70,7 @@ CandidateDetail.propTypes = {
   positions: PropTypes.array,
   candidateId: PropTypes.string,
   partyPreference: PropTypes.string,
-  matchPercent: PropTypes.number
+  matchPercent: PropTypes.number,
 };
 const Favorite = props => (
   <View style={styles.favoriteContainer}>
@@ -85,7 +102,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   favorite: {
-    color: Colors.orange
+    color: Colors.orange,
   },
   favoriteContainer: {
     position: 'absolute',
@@ -95,18 +112,18 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 21,
     paddingTop: 5,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   positionsText: {
     color: Colors.lightGray,
     paddingTop: 5,
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   matchText: {
     color: Colors.lightBlue,
     fontSize: 18,
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 });
 
 export default CandidateDetail;
