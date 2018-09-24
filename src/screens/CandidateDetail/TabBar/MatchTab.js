@@ -17,7 +17,7 @@ const MatchCard = props => (
       onPress={()=>{
         const url = "https://www.getcivicapp.com/";
         Share.share({
-          message: `I'm a ${props.matchPercent} with ${'candidate name placeholder'}! Checkout the civic app at ${url}.`,
+          message: `I'm a ${props.matchPercent} with ${'candidate name placeholder'}! Register to vote and find your election matches with Civic in 5 minutes.`,
           url: url,
           title: "Civic App"
         },
