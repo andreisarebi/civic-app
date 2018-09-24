@@ -14,8 +14,8 @@ const fast = ({ value, toValue, useNativeDriver }) =>
   });
 
 const Wrapper = posed.View({
-  closed: { height: 0, transition: () => false },
-  open: { height: '100%', transition: fast }
+  closed: { maxHeight: 0, transition: fast },
+  open: { maxHeight: '150%', transition: fast }
 });
 
 class IssueCard extends Component {
@@ -38,35 +38,37 @@ class IssueCard extends Component {
           underlayColor={'rgba(0,0,0,0.1)'}
         >
           <View style={styles.issueCard}>
-            <Icon
-              name={agreesWithUser ? 'check' : 'close'}
-              type="material-community"
-              size={30}
-              color={agreesWithUser ? Colors.green : Colors.red }
-              containerStyle={styles.issueMatchIcon}
-            />
-            <Text style={styles.issueText}>
-              {agreesWithUser ? 'Agree' : 'Disagree'} on {type} Issues</Text>
-            <View
-              style={styles.issueExpandButton}
-            >
+            <View style={styles.issueCardTop}>
               <Icon
-                name="chevron-down"
+                name={agreesWithUser ? 'check' : 'close'}
                 type="material-community"
                 size={30}
-                color="#CDCDCD"
+                color={agreesWithUser ? Colors.green : Colors.red }
+                containerStyle={styles.issueMatchIcon}
               />
+              <Text style={styles.issueText}>
+                {agreesWithUser ? 'Agree' : 'Disagree'} on {type} Issues</Text>
+              <View
+                style={styles.issueExpandButton}
+              >
+                <Icon
+                  name="chevron-down"
+                  type="material-community"
+                  size={30}
+                  color="#CDCDCD"
+                />
+              </View>
             </View>
+            <Wrapper
+              style={{backgroundColor:Colors.white}}
+              pose={isExpanded ? 'open' : 'closed'}
+            >
+              <Text style={styles.issueBody}>
+                {body}
+              </Text>
+            </Wrapper>
           </View>
         </TouchableHighlight>
-        <Wrapper
-          style={{backgroundColor:Colors.white}}
-          pose={isExpanded ? 'open' : 'closed'}
-        >
-          <Text style={styles.issueBody}>
-            {body}
-          </Text>
-        </Wrapper>
       </View>
     )
   }
@@ -75,15 +77,19 @@ class IssueCard extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin:10,
     borderRadius: 2,
+    backgroundColor: Colors.white
+  },
+  issueCard: {
+    margin:5,
+    marginLeft: 10,
+    marginRight: 10,
     backgroundColor: Colors.white,
     ...Mixins.shadow
   },
-  issueCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: Colors.white
+  issueCardTop: {
+    flexDirection:'row',
+    alignItems: 'center'
   },
   issueText: {
     fontSize: 16,
@@ -100,6 +106,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingLeft: 50,
     color: 'rgba(0, 0, 0, 0.5438)',
+    paddingBottom: 20
   }
 });
 
