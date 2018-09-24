@@ -14,8 +14,8 @@ const fast = ({ value, toValue, useNativeDriver }) =>
   });
 
 const Wrapper = posed.View({
-  closed: { height: 50, transition: () => false },
-  open: { height: '110%', transition: fast }
+  closed: { height: 0, transition: () => false },
+  open: { height: '100%', transition: fast }
 });
 
 class IssueCard extends Component {
@@ -32,10 +32,7 @@ class IssueCard extends Component {
     const { isExpanded } = this.state;
     const { type, body, agreesWithUser } = this.props;
     return(
-      <Wrapper
-        style={styles.container}
-        pose={isExpanded ? 'open' : 'closed'}
-      >
+      <View styles={styles.container}>
         <TouchableHighlight
           onPress={ toggleExpand }
           underlayColor={'rgba(0,0,0,0.1)'}
@@ -62,18 +59,22 @@ class IssueCard extends Component {
             </View>
           </View>
         </TouchableHighlight>
-        {isExpanded &&
+        <Wrapper
+          style={{backgroundColor:Colors.white}}
+          pose={isExpanded ? 'open' : 'closed'}
+        >
           <Text style={styles.issueBody}>
             {body}
           </Text>
-        }
-      </Wrapper>
+        </Wrapper>
+      </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     margin:10,
     borderRadius: 2,
     backgroundColor: Colors.white,
@@ -82,9 +83,11 @@ const styles = StyleSheet.create({
   issueCard: {
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: Colors.white
   },
   issueText: {
-    fontSize: 16
+    fontSize: 16,
+    backgroundColor: Colors.white
   },
   issueMatchIcon: {
     padding: 10
@@ -96,7 +99,7 @@ const styles = StyleSheet.create({
   issueBody: {
     fontSize: 16,
     paddingLeft: 50,
-    color: 'rgba(0, 0, 0, 0.5438)'
+    color: 'rgba(0, 0, 0, 0.5438)',
   }
 });
 
