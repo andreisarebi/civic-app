@@ -15,7 +15,7 @@ const NavigationRoot = createSwitchNavigator(
   {
     App: MainTabNavigator,
     Auth: AuthStack,
-    Survey: MainTabNavigator,
+    Survey: SurveyStack,
     DistrictMatch: DistrictMatchStack
   },
   {
