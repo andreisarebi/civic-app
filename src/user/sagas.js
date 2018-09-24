@@ -2,6 +2,7 @@ import { call, select, put, takeEvery } from 'redux-saga/effects';
 import { getLoggedInUserId } from '../auth/selectors';
 import { logOutSaga } from '../auth/sagas';
 import { fetchUser } from './api';
+import { UserActionType, userFetchSuccess } from './redux';
 
 export const loadUserDataSaga = function*() {
   try {
@@ -17,21 +18,6 @@ export const loadUserDataSaga = function*() {
     // TODO: handle error
 
   }
-};
-
-export const userFetchSuccess = ({ responses, favorites, user }) => ({
-  type: UserActionType.RequestSuccess,
-  payload: { responses, favorites, user },
-});
-
-export const loadUser = (force = false) => ({
-  type: UserActionType.Request,
-  payload: force
-});
-
-export const UserActionType = {
-  Request: 'civicApp/user/REQUEST',
-  RequestSuccess: 'civicApp/user/REQUEST_SUCCESS',
 };
 
 export default function*() {
