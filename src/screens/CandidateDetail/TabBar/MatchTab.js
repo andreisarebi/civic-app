@@ -1,24 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet, Share } from 'react-native';
-import { Button } from 'react-native-elements'
 import PropTypes from 'prop-types';
 import Colors from '../../../styles/colors';
 import IssueCard from './IssueCard';
+import ShareButton from '../../components/ShareButton';
 
 const MatchCard = props =>
   <View style={styles.matchCard}>
     <Text style={styles.matchCardText}>
       You're a <Text style={styles.matchCardPercentText}>{props.matchPercent}%</Text> match!
     </Text>
-    <Button
-      raised
-      rightIcon={{name: 'launch', size:25}}
-      borderRadius={5}
-      title="Share"
-      buttonStyle={styles.shareButton}
-      containerViewStyle={styles.buttonView}
-      textStyle={styles.buttonText}
-      fontWeight="bold"
+    <ShareButton
+      title={"Share"}
+      containerViewStyle={styles.containerViewStyle}
+      buttonStyle={styles.buttonStyle}
       onPress={()=>{
         const url = "https://www.getcivicapp.com/";
         Share.share({
@@ -68,6 +63,13 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     height:70
   },
+  containerViewStyle: {
+    width: '33%',
+    height: '60%',
+  },
+  buttonStyle: {
+    backgroundColor: Colors.lightBlue,
+  },
   matchCardText: {
     textAlign: 'center',
     fontSize: 16,
@@ -76,16 +78,6 @@ const styles = StyleSheet.create({
   },
   matchCardPercentText:{
     fontSize: 24
-  },
-  shareButton: {
-    backgroundColor: Colors.lightBlue,
-  },
-  buttonView: {
-    width: '33%',
-    height: '60%',
-  },
-  buttonText: {
-    color: Colors.white
   }
 });
 
