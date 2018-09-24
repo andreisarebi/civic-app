@@ -16,7 +16,7 @@ const CredentialInputScreen = props => {
         titleText: 'Sign in',
         changeFormText: 'Don\'t have an account yet? Register',
         otherFormType: formTypes.SIGN_UP,
-        googleButtonText: 'Sign in with Google',
+        googleButtonText: 'Continue with Google',
       };
       break;
     case formTypes.SIGN_UP:
@@ -24,7 +24,7 @@ const CredentialInputScreen = props => {
         titleText: 'Sign Up for Civic',
         changeFormText: 'Have an account? Sign in',
         otherFormType: formTypes.LOGIN,
-        googleButtonText: 'Sign up with Google',
+        googleButtonText: 'Continue with Google',
       };
       break;
     default:
