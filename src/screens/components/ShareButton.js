@@ -7,13 +7,12 @@ import Colors from '../../styles/colors';
 const ShareButton = props => (
   <Button
     raised
-    rightIcon={{name: 'launch', size:25}}
+    rightIcon={{name: 'launch', size:20}}
     borderRadius={5}
     title={props.title}
     buttonStyle={props.buttonStyle}
     containerViewStyle={props.containerViewStyle}
     textStyle={styles.buttonText}
-    fontWeight="bold"
     onPress={props.onPress}
   />
 );
@@ -25,7 +24,8 @@ ShareButton.propTypes = {
 
 const styles = StyleSheet.create({
   buttonText: {
-    color: Colors.white
+    color: Colors.white,
+    fontSize: 14
   }
 });
 

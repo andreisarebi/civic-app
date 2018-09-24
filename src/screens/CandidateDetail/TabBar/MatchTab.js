@@ -8,11 +8,10 @@ import ShareButton from '../../components/ShareButton';
 const MatchCard = props => (
   <View style={styles.matchCard}>
     <Text style={styles.matchCardText}>
-      You're a <Text style={styles.matchCardPercentText}>{props.matchPercent}%</Text> match!
+      You're a  <Text style={styles.matchCardPercentText}>{props.matchPercent}%</Text>  match!
     </Text>
     <ShareButton
       title={"Share"}
-      containerViewStyle={styles.containerViewStyle}
       buttonStyle={styles.buttonStyle}
       onPress={()=>{
         const url = "https://www.getcivicapp.com/";
@@ -57,23 +56,25 @@ const styles = StyleSheet.create({
     margin: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     backgroundColor: Colors.darkBlue,
     borderRadius: 2,
-    height: 70,
-  },
-  containerViewStyle: {
-    width: '33%',
-    height: '60%',
+    padding: 15,
+    paddingLeft: 0,
+    paddingRight: 0,
   },
   buttonStyle: {
     backgroundColor: Colors.lightBlue,
+    height: 35,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   matchCardText: {
     textAlign: 'center',
     fontSize: 16,
     color: Colors.white,
     flex: 2,
+    marginBottom: 5
   },
   matchCardPercentText:{
     fontSize: 24
