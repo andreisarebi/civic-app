@@ -47,7 +47,7 @@ class IssueCard extends Component {
                 containerStyle={styles.issueMatchIcon}
               />
               <Text style={styles.issueText}>
-                {agreesWithUser ? 'Agree' : 'Disagree'} on {type} Issues</Text>
+                {agreesWithUser ? 'Agree' : 'Disagree'} on {type} issues</Text>
               <View
                 style={styles.issueExpandButton}
               >
