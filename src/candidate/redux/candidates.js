@@ -29,9 +29,10 @@ const matchDistrictToElections = (district, elections) => {
     const matches = election.match(districtNumberRegex);
     // we have a match if:
     // 1. We had a match to a previous electionId for this candidate
-    // 2. The electionId is a national election
-    // 3. The electionId is a district that matches the user's district
-    return isMatch || matches === null || matches[0] === district;
+    // 2. District is null, undefined, or 0
+    // 3. The electionId is a national election
+    // 4. The electionId is a district that matches the user's district
+    return isMatch || !district || matches === null || matches[0] === district;
   }, false);
 };
 
