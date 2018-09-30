@@ -2,21 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Animated} from 'react-native';
 import { Icon } from 'react-native-elements'
 import Colors from '../../../styles/colors';
-import posed from 'react-native-pose';
 import PropTypes from 'prop-types';
 import Mixins from '../../../styles/mixins';
-
-const fast = ({ value, toValue, useNativeDriver }) =>
-  Animated.timing(value, {
-    toValue,
-    useNativeDriver,
-    duration: 100,
-  });
-
-const Wrapper = posed.View({
-  closed: { maxHeight: 0, transition: fast },
-  open: { maxHeight: '150%', transition: fast }
-});
 
 class IssueCard extends Component {
   state = {
@@ -59,14 +46,15 @@ class IssueCard extends Component {
                 />
               </View>
             </View>
-            <Wrapper
+            <View
               style={{backgroundColor:Colors.white}}
-              pose={isExpanded ? 'open' : 'closed'}
             >
+            {isExpanded &&
               <Text style={styles.issueBody}>
                 {body}
-              </Text>
-            </Wrapper>
+              </Text>            
+            }
+            </View>
           </View>
         </TouchableHighlight>
       </View>
@@ -105,6 +93,7 @@ const styles = StyleSheet.create({
   issueBody: {
     fontSize: 16,
     paddingLeft: 50,
+    paddingRight: 20,
     color: 'rgba(0, 0, 0, 0.5438)',
     paddingBottom: 20
   }

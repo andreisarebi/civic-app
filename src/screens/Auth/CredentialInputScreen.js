@@ -21,7 +21,7 @@ const CredentialInputScreen = props => {
       break;
     case formTypes.SIGN_UP:
       options = {
-        titleText: 'Sign Up for Civic',
+        titleText: 'Sign up for Civic',
         changeFormText: 'Have an account? Sign in',
         otherFormType: formTypes.LOGIN,
         googleButtonText: 'Continue with Google',
