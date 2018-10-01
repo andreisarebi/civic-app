@@ -23,7 +23,7 @@ const MainTabNavigator = createBottomTabNavigator(
   {
     // initialRouteName: 'Home',
     initialRouteName: 'Elections',
-    navigationOptions: ({ navigation,  }) => ({
+    navigationOptions: ({ navigation }) => ({
       tabBarIcon: props => <TabBarIcon navigation={navigation} {...props} />,
       tabBarLabel: props => <TabBarLabel title={navigation.state.routeName} {...props} />,
     }),
