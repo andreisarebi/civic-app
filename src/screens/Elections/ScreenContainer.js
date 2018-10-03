@@ -5,10 +5,12 @@ import { connect } from 'react-redux';
 import {StyleSheet, ScrollView, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { getCandidateData } from './viewSelectors'
 import DataContainer from './CandidateContainer'
+import Banner from '../Home/Banner';
 
 const ElectionsScreen = props => {
   return (
     <View style={styles.container}>
+      <Banner type="info" title="Here are your matches!" subtitle="Click to learn more about each candidate." icon="megaphone" />
       <FlatList
         data={props.electionCandidates.electionCandidates}
         keyExtractor={(item)=>item.electionIds}
@@ -19,12 +21,12 @@ const ElectionsScreen = props => {
               <Text style={styles.electionText}>November 6, 2018</Text>
             </View>
             <ScrollView horizontal={true}>
-              {item.candidates.map(candidate => { 
-                return ( 
+              {item.candidates.map(candidate => {
+                return (
                   <TouchableOpacity key={candidate.id} onPress={ props.goToCandidateDetail(candidate.id)}>
                     <Candidate candidateId={candidate.id}/>
                   </TouchableOpacity>
-                ) 
+                )
               })}
             </ScrollView>
           </View>
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent:'space-between',
     alignItems: 'stretch',
-  },  
+  },
   candidateContainer: {
     alignItems: 'flex-start',
     marginTop: 15,
@@ -72,5 +74,5 @@ const styles = StyleSheet.create({
     fontSize : 18,
   },
 })
-    
+
 export default ElectionsScreen
