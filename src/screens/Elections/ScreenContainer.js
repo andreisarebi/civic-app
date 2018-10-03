@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Colors from '../../styles/colors';
 import { connect } from 'react-redux';
-import { StyleSheet, ScrollView, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import { getCandidateData } from './viewSelectors';
 import DataContainer from './CandidateContainer';
 import Banner from '../Home/Banner';
@@ -11,24 +11,21 @@ import VoterRegAlert from '../Home/VoterRegAlert';
 const ElectionsScreen = props => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View>
-        <VoterRegAlert
-          isUserRegistered={props.isUserRegistered}
-          onYesButtonPress={() => props.userRegistered(true)}
-          onNoButtonPress={props.goToVoterRegistration}
-        />
-        <Banner
-          type="info"
-          title="Here are your matches!"
-          subtitle="Click to learn more about each candidate."
-          icon="megaphone"
-        />
-      </View>
-      <FlatList
-        data={props.electionCandidates.electionCandidates}
-        keyExtractor={item => item.electionIds}
-        renderItem={({ item }) => (
-          <View key={item} style={styles.candidateContainer}>
+      <VoterRegAlert
+        isUserRegistered={props.isUserRegistered}
+        onYesButtonPress={() => props.userRegistered(true)}
+        onNoButtonPress={props.goToVoterRegistration}
+      />
+      <Banner
+        type="info"
+        title="Here are your matches!"
+        subtitle="Click to learn more about each candidate."
+        icon="megaphone"
+      />
+
+      {props.electionCandidates.electionCandidates.map(item => {
+        return (
+          <View key={item.electionIds} style={styles.candidateContainer}>
             <View style={styles.informationContainer}>
               <Text style={styles.positionText}>{item.electionIds} </Text>
               <Text style={styles.electionText}>November 6, 2018</Text>
@@ -43,8 +40,8 @@ const ElectionsScreen = props => {
               })}
             </ScrollView>
           </View>
-        )}
-      />
+        );
+      })}
     </ScrollView>
   );
 };
