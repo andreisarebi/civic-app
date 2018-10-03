@@ -67,9 +67,9 @@ export const updateEmail = email => ({
   type: AuthActionType.UpdateEmail,
   payload: email,
 });
-export const userRegistered = (isRegisteredToVote) => ({
+export const userRegistered = isRegisteredToVote => ({
   type: AuthActionType.UserRegistered,
-  payload: { isRegisteredToVote },
+  payload: isRegisteredToVote,
 });
 
 /*
