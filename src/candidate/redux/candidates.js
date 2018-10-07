@@ -10,7 +10,9 @@ export const getFilteredCandidates = (state, viewMapper, candidateIds) => {
   const district = getUserDistrict(state);
   // parse num out of district once so we can later match by passing the number
   // to matchDistrictToElections
-  const districtNum = district.match(/([0-9])+/g)[0];
+  const parsedNum = (typeof district === 'string') ? district.match(/([0-9])+/g) : null;
+  const districtNum = (parsedNum && parsedNum.length > 0) && parsedNum[0] || null;  
+
   // reduce all candidates to just the list of matches
   return candidateIds.reduce((filteredCandidates, id) => {
     const candidate = getCandidate(state, id);
@@ -39,6 +41,10 @@ export const getFilteredCandidates = (state, viewMapper, candidateIds) => {
  */ 
 
 const matchDistrictToElections = (districtNum, election) => {
+  // return false if election is null / undefined
+  if(!election) return false;
+  // return true if districtNum is null
+  if(!districtNum) return true;
   const numberToMatch = new RegExp(districtNum);
   const hasNumber = new RegExp(/([0-9])+/);
   return numberToMatch.test(election) || !hasNumber.test(election);
