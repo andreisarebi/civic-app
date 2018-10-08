@@ -9,9 +9,9 @@ export const UserActionType = {
 };
 
 // Action creators
-export const userFetchSuccess = ({ responses, favorites, district, user }) => ({
+export const userFetchSuccess = ({ responses, favorites, district, isRegisteredToVote, user }) => ({
   type: UserActionType.RequestSuccess,
-  payload: { responses, favorites, district, user },
+  payload: { responses, favorites, district, isRegisteredToVote, user },
 });
 
 export const loadUser = (force = false) => ({
