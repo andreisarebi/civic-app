@@ -139,11 +139,17 @@ const authReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         user: { id: action.payload.uid, email: action.payload.email },
+        email: '',
+        password: '',
+        duplicatePassword: '',
       };
     case AuthActionType.LogOutSuccess:
       return {
         ...state,
         user: null,
+        email: '',
+        password: '',
+        duplicatePassword: '',
       };
     default:
       return state;
