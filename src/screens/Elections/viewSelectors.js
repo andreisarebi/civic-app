@@ -6,8 +6,8 @@ import { Category } from '../../favorites/models';
 import { getCandidate, getCandidates, loadCandidates } from '../../candidate/redux/candidates';
 import { loadUser } from '../../user/redux';
 import { getIsLoggedIn } from '../../auth/selectors';
-import { userRegistered } from '../../auth/redux';
-import { getUserRegistered } from '../../auth/selectors';
+import { saveUserRegistered } from '../../user/redux';
+import { getUserRegistered } from '../../user/selectors';
 import WithAuthentication from '../../util/components/WithAuthentication';
 import Elections from './ScreenContainer';
 
@@ -51,7 +51,7 @@ const Container = compose(
       electionCandidates: getElectionsViewProps(state),
       isUserRegistered: getUserRegistered(state),
     }),
-    { loadCandidates, loadUser, userRegistered },
+    { loadCandidates, loadUser, saveUserRegistered },
   ),
   lifecycle({
     componentDidMount() {

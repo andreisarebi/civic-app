@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, TextInput, Image } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { userRegistered } from '../auth/redux';
-import { getUserRegistered } from '../auth/selectors';
+import { saveUserRegistered } from '../user/redux';
+import { getUserRegistered } from '../user/selectors';
 import colors from '../styles/colors';
 
 class VoterRegistrationSuccessScreen extends React.Component {
@@ -13,9 +13,15 @@ class VoterRegistrationSuccessScreen extends React.Component {
 
   componentDidMount() {
     if (!this.props.isRegistered) {
-      this.props.isUserRegistered(true);
+      this.props.saveUserRegistered(true);
     }
   }
+
+  sharedButtonProps = {
+    borderRadius: 5,
+    containerViewStyle: styles.buttonContainer,
+    fontSize: 18,
+  };
 
   render() {
     return (
@@ -81,18 +87,12 @@ const styles = StyleSheet.create({
   },
 });
 
-sharedButtonProps = {
-  borderRadius: 5,
-  containerViewStyle: styles.buttonContainer,
-  fontSize: 18,
-};
-
 VoterRegistrationSuccessScreen.propTypes = {
   isRegistered: PropTypes.bool,
-  isUserRegistered: PropTypes.func,
+  saveUserRegistered: PropTypes.func,
 };
 
 export default connect(
   state => ({ isRegistered: getUserRegistered(state) }),
-  { isUserRegistered: userRegistered },
+  { saveUserRegistered: saveUserRegistered },
 )(VoterRegistrationSuccessScreen);

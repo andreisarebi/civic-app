@@ -13,7 +13,7 @@ const ElectionsScreen = props => {
     <ScrollView contentContainerStyle={styles.container}>
       <VoterRegAlert
         isUserRegistered={props.isUserRegistered}
-        onYesButtonPress={() => props.userRegistered(true)}
+        onYesButtonPress={() => props.saveUserRegistered(true)}
         onNoButtonPress={props.goToVoterRegistration}
       />
       <Banner
@@ -51,7 +51,7 @@ ElectionsScreen.propTypes = {
   goToVoterRegistration: PropTypes.func.isRequired,
   electionCandidates: PropTypes.object.isRequired,
   isUserRegistered: PropTypes.bool.isRequired,
-  userRegistered: PropTypes.func.isRequired,
+  saveUserRegistered: PropTypes.func.isRequired,
 };
 
 export const Candidate = connect((state, ownProps) => ({
