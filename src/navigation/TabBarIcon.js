@@ -18,6 +18,7 @@ const ElectionsIconHighlighted = <Image source={electionsIconHighlightedSource} 
 
 const TabBarIcon = props => {
   const { routeName } = props.navigation.state;
+  console.log('s', routeName)
   let iconName;
   switch (routeName) {
     case 'Home':
