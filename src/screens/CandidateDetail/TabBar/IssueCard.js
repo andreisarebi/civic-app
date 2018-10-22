@@ -1,30 +1,26 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableHighlight, Linking} from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight, FlatList, Button, TouchableOpacity} from 'react-native';
 import { Icon } from 'react-native-elements'
 import Colors from '../../../styles/colors';
 import PropTypes from 'prop-types';
 import Mixins from '../../../styles/mixins';
-import { WebView } from 'react-native-gesture-handler';
 
 class IssueCard extends Component {
   state = {
     isExpanded: false,
-    check: false,
   }
 
+  static propTypes = propTypes;
   toggleExpand = () => {
     this.setState({isExpanded:!this.state.isExpanded})
   }
-  renderView = (val) => {
-    this.setState({check:!this.state.check});
-    // console.log(val);
-  }
+
+  renderSeparator = () => {
+    return(<View style = {{width: 10,}}/>)};
 
   render(){
     const { toggleExpand } = this;
-    const { renderView } = this;
     const { isExpanded } = this.state;
-    const { check } = this.state;
     const { type, body, source, agreesWithUser } = this.props;
     return(
       <View styles={styles.container}>
@@ -53,33 +49,34 @@ class IssueCard extends Component {
                   color="#CDCDCD"
                 />
               </TouchableHighlight>
-              {source.map((val, idx) => {
-                return ( 
-                  <TouchableHighlight key={idx} 
-                    onPressIn={ renderView }>
-                    <Text style={{color:'blue'}}>
-                      {++idx}
-                    </Text>
-                  </TouchableHighlight>
-                )
-              })}
             </View>
           </View>
-          <View
-            style={{backgroundColor:Colors.white}}
-          >
+          <View style={{ backgroundColor:Colors.white,}}>
             {isExpanded &&
                 <Text style={styles.issueBody}>
                   {body}  
-                </Text>
+                </Text> 
             }
-            {isExpanded && check && source.map((val, idx) => {
-              return (
-                <View key={idx}>
-                  <Text>{idx++}</Text>
-                </View>
-              );
-            })}
+            { isExpanded &&  
+                <FlatList 
+                  data={source}
+                  horizontal={true}
+                  keyExtractor={(item) =>  item}
+                  ItemSeparatorComponent={this.renderSeparator}
+                  renderItem={({item, index}) => (
+                    // <Button 
+                    // style ={{padding: 15}}
+                    //   onPress={() => this.props.navigation.navigate('Content', {
+                    //     otherParam: this.props.type, uri: item})}
+                    //   title={(++index).toString()}
+                    // />
+                    <Text style={styles.sourceText} onPress={() => this.props.navigation.navigate('Content', {
+                      otherParam: this.props.type, uri: item})}>
+                          [{(++index).toString()}]
+                    </Text>
+                  )}
+                />
+            }
           </View>
         </View>
       </View>
@@ -116,7 +113,10 @@ const styles = StyleSheet.create({
     right:10
   },
   sourceText:{
-    flexDirection: 'row'
+    fontSize: 16,
+    color: Colors.lightBlue,
+    fontWeight: 'bold'
+
   },
   issueBody: {
     fontSize: 16,
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     color: 'rgba(0, 0, 0, 0.5438)',
     paddingBottom: 20
-  }
+  },
 });
 
 IssueCard.propTypes = {
@@ -132,6 +132,13 @@ IssueCard.propTypes = {
   body: PropTypes.string,
   source:PropTypes.array,
   agreesWithUser: PropTypes.bool,
+};
+
+const propTypes = {
+  navigation: PropTypes.objectOf({
+    navigate: PropTypes.func,
+    push: PropTypes.func,
+  }),
 };
 
 export default IssueCard;

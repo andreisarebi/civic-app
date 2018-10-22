@@ -1,20 +1,24 @@
 import { createStackNavigator } from 'react-navigation';
-import FavoritesScreen from '../screens/Favorites';
 import ContentScreen from '../screens/CandidateDetail/TabBar/WebContent';
+import CandidateDetailScreen from '../screens/CandidateDetail';
 
 import styles from './styles';
 
-const FavoritesStack = createStackNavigator(
+
+const CandidateStack = createStackNavigator(
   {
-    Favorites: FavoritesScreen,
+    CandidateDetail: CandidateDetailScreen,
     Content: ContentScreen,
+
   },
   {
     navigationOptions: {
+      title: 'District Match',
       headerStyle: styles.header,
       headerTitleStyle: styles.title,
     },
   },
 );
 
-export default FavoritesStack;
+
+export default CandidateStack;
