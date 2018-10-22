@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableHighlight, FlatList, Button, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight, FlatList } from 'react-native';
 import { Icon } from 'react-native-elements'
 import Colors from '../../../styles/colors';
 import PropTypes from 'prop-types';
@@ -17,6 +17,12 @@ class IssueCard extends Component {
 
   renderSeparator = () => {
     return(<View style = {{width: 10,}}/>)};
+
+  toTitleCase = (str) =>{
+    return str.toLowerCase().split(' ').map((s) => {
+      return s.charAt(0).toUpperCase() + s.substring(1)
+    }).join(' ')
+  }
 
   render(){
     const { toggleExpand } = this;
@@ -53,29 +59,26 @@ class IssueCard extends Component {
           </View>
           <View style={{ backgroundColor:Colors.white,}}>
             {isExpanded &&
-                <Text style={styles.issueBody}>
-                  {body}  
-                </Text> 
-            }
-            { isExpanded &&  
-                <FlatList 
-                  data={source}
-                  horizontal={true}
-                  keyExtractor={(item) =>  item}
-                  ItemSeparatorComponent={this.renderSeparator}
-                  renderItem={({item, index}) => (
-                    // <Button 
-                    // style ={{padding: 15}}
-                    //   onPress={() => this.props.navigation.navigate('Content', {
-                    //     otherParam: this.props.type, uri: item})}
-                    //   title={(++index).toString()}
-                    // />
-                    <Text style={styles.sourceText} onPress={() => this.props.navigation.navigate('Content', {
-                      otherParam: this.props.type, uri: item})}>
+            <View style={styles.issueBody}>
+              <Text style={styles.issueBodyText}>
+                {body}  
+              </Text> 
+              <FlatList 
+                data={source}
+                horizontal={true}
+                keyExtractor={(item) =>  item}
+                ItemSeparatorComponent={this.renderSeparator}
+                renderItem={({item, index}) => (
+                  <Text 
+                    onPress={() => this.props.navigation.navigate('Content', {
+                      otherParam: this.toTitleCase(type), uri: item})}
+                    style={styles.sourceText}>
                           [{(++index).toString()}]
-                    </Text>
-                  )}
-                />
+                  </Text>
+                  
+                )}
+              />
+            </View>
             }
           </View>
         </View>
@@ -114,15 +117,18 @@ const styles = StyleSheet.create({
   },
   sourceText:{
     fontSize: 16,
+    paddingTop: 10,
     color: Colors.lightBlue,
     fontWeight: 'bold'
 
   },
-  issueBody: {
+  issueBodyText: {
+    color: 'rgba(0, 0, 0, 0.5438)',
     fontSize: 16,
+  },
+  issueBody: {
     paddingLeft: 50,
     paddingRight: 20,
-    color: 'rgba(0, 0, 0, 0.5438)',
     paddingBottom: 20
   },
 });

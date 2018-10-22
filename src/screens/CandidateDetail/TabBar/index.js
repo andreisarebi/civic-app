@@ -17,7 +17,7 @@ class TabBar extends Component {
       case 'Match':
         return <MatchTab {...this.props.matchTab} navigation={this.props.navigation}/>;
       case 'About':
-        return <AboutTab {...this.props.aboutTab} navigation={this.props.navigation} />;
+        return <AboutTab {...this.props.aboutTab} />;
       case 'News':
         return <NewsTab {...this.props.newsTab} />;
       default:
