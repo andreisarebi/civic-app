@@ -3,7 +3,10 @@ import { getPositionsForCandidate } from '../candidate/redux/positions';
 import { getUserPositions } from './redux';
 import { calculateMatch } from './calculate';
 
-export const getMatchPercent = (state, candidateId) => {
+export const getMatchPercent = (state, candidateId) => getMatchData(state, candidateId).match;
+export const getCertaintyPercent = (state, candidateId) => getMatchData(state, candidateId).certainty;
+
+export const getMatchData = (state, candidateId) => {
   const userPositions = getUserPositions(state);
   const candidatePositions = getPositionsForCandidate(state, candidateId);
   return userPositions && candidatePositions &&

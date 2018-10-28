@@ -1,34 +1,37 @@
 export const calculateMatch = (userPositions, candidatePositions) => {
-  const [gap, maxGap] = calculatePositionsGap(userPositions, candidatePositions);
-  return (
-    maxGap > 0 // 0 max gap means candidate and user have no questions on which they both expressed an opinion
-      ? +(Math.round(((1 - gap/maxGap) * 100) + 'e+2')  + 'e-2')
-      : 0 // TODO: maybe add a real placeholder when candidate data is all in place
-  );
+  const { totalGap, maxGap, numUnknown } = calculatePositionsGap(userPositions, candidatePositions);
+  return {
+    match: (
+      maxGap > 0 // 0 max gap means candidate and user have no questions on which they both expressed an opinion
+        ? +(Math.round(((1 - totalGap/maxGap) * 100) + 'e+2')  + 'e-2')
+        : 0 // TODO: maybe add a real placeholder when candidate data is all in place
+    ),
+    certainty: maxGap / (maxGap + numUnknown),
+  };
 };
 
 const calculatePositionsGap = (userPositions, candidatePositions) => (
   Object.keys(userPositions).reduce(
-    ([totalSoFar, maxSoFar], id) => {
+    ({ totalGap, maxGap, numUnknown }, id) => {
       const userScore = getPositionResponse(id, userPositions);
       const candidateScore = getPositionResponse(id, candidatePositions);
-      const [gap, max] = hasUserAndCandidateScores(userScore, candidateScore)
+      const { gap, max, unknown } = hasUserAndCandidateScores(userScore, candidateScore)
         ? calculateGapForSingle(userScore, candidateScore)
-        : [0, 0];
-      return [gap + totalSoFar, max + maxSoFar];
+        : { gap: 0, maxGap2: 0, unknown: 1 };
+      return {totalGap: totalGap + gap, maxGap: maxGap + max, numUnknown: numUnknown + unknown };
     },
-    [0, 0])
+    { totalGap: 0, maxGap: 0, numUnknown: 0 })
 );
 
 export const calculateGapForSingle = (user, candidate) => {
-  if (isUserNeutral(user)) {
-    return [0, 0];
+  if (isNeutral(user)) {
+    return { gap: 0, max: 0, unknown: 0 };
   } else if (isAgreement(user, candidate)) {
-    return [0, 4];
-  } else if (candidate === 0) {
-    return [Math.abs(user), 4];
+    return { gap: 0, max: 1, unknown: 0 };
+  } else if (isNeutral(candidate)) {
+    return { gap: Math.abs(user)/4, max: 1, unknown: 1 };
   } else { // not in agreement
-    return [1 + Math.abs(candidate - user), 4];
+    return { gap: (1 + Math.abs(candidate - user))/4, max: 1, unknown: 0 };
   }
 };
 
@@ -37,7 +40,7 @@ export const isAgreement = (user, candidate) => (
   || (candidate < 0 && user < 0)
 );
 
-export const isUserNeutral = user => user === 0;
+export const isNeutral = answer => answer === 0;
 
 export const getPositionResponse = (id, positions) => (
   positions && positions[id] && positions[id].response
