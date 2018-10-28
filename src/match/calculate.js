@@ -1,12 +1,13 @@
 export const calculateMatch = (userPositions, candidatePositions) => {
   const { totalGap, maxGap, numUnknown } = calculatePositionsGap(userPositions, candidatePositions);
+  console.log('cert', totalGap/maxGap, totalGap, maxGap)
   return {
     match: (
       maxGap > 0 // 0 max gap means candidate and user have no questions on which they both expressed an opinion
-        ? +(Math.round(((1 - totalGap/maxGap) * 100) + 'e+2')  + 'e-2')
+        ? toRoundedPercent(1 - totalGap/maxGap)
         : 0 // TODO: maybe add a real placeholder when candidate data is all in place
     ),
-    certainty: maxGap / (maxGap + numUnknown),
+    certainty: toRoundedPercent(maxGap / (maxGap + numUnknown)),
   };
 };
 
@@ -48,3 +49,5 @@ export const getPositionResponse = (id, positions) => (
 
 const hasUserAndCandidateScores = (userScore, candidateScore) =>
   (typeof userScore === 'number') && (typeof candidateScore === 'number');
+
+const toRoundedPercent = num => Math.round(num * 100);
