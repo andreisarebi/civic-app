@@ -1,11 +1,11 @@
 {
   "expo": {
     "name": "Civic App",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "slug": "civic-app",
     "sdkVersion": "27.0.0",
     "ios": {
-      "bundleIdentifier": "com.civic.civicapp"
+      "bundleIdentifier": "com.civiclabs.civicapp"
     },
     "android": {
       "package": "com.civic.civicapp"
